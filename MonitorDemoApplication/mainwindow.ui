@@ -27,7 +27,7 @@
     <property name="title">
      <string>file</string>
     </property>
-    <addaction name="actionopen"/>
+    <addaction name="action_open"/>
    </widget>
    <addaction name="menufile"/>
   </widget>
@@ -38,15 +38,23 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="separator"/>
+   <addaction name="action_open"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionopen">
+  <action name="action_open">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icon/icons/Open.png</normaloff>:/icon/icons/Open.png</iconset>
+   </property>
    <property name="text">
     <string>open</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
  <connections/>
 </ui>
