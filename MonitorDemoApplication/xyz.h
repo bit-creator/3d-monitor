@@ -13,8 +13,8 @@ public:
     XYZ(const XYZ& xyz) : _X(xyz._X), _Y(xyz._Y), _Z(xyz._Z){}
     XYZ(const XYZ&& xyz) : _X(xyz._X), _Y(xyz._Y), _Z(xyz._Z){}
 
-    XYZ& operator=(const XYZ& _XYZ);
-    XYZ& operator=(const XYZ&& _XYZ);
+    XYZ& operator=(const XYZ& xyz);
+    XYZ& operator=(const XYZ&& xyz);
 
     ~XYZ();
 

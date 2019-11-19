@@ -5,26 +5,26 @@ XYZ::~XYZ()
 
 }
 
-XYZ& XYZ::operator=(const XYZ& _XYZ)
+XYZ& XYZ::operator=(const XYZ& xyz)
 {
-    if(this == &_XYZ)
+    if(this == &xyz)
         return *this;
 
-    _X = _XYZ._X;
-    _Y = _XYZ._Y;
-    _Z = _XYZ._Z;
+    _X = xyz._X;
+    _Y = xyz._Y;
+    _Z = xyz._Z;
 
     return *this;
 }
 
-XYZ& XYZ::operator=(const XYZ&& _XYZ)
+XYZ& XYZ::operator=(const XYZ&& xyz)
 {
-    if(this == &_XYZ)
+    if(this == &xyz)
         return *this;
 
-    _X = _XYZ._X;
-    _Y = _XYZ._Y;
-    _Z = _XYZ._Z;
+    _X = xyz._X;
+    _Y = xyz._Y;
+    _Z = xyz._Z;
 
     return *this;
 }
