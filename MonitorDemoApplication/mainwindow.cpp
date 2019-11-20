@@ -31,6 +31,7 @@ void MainWindow::on_action_open_triggered()
         else
         {
             triangle Triangle;
+            Triangle = new triangle;
             QTextStream in(&model);
 //            double x;
 //            in >> x;
