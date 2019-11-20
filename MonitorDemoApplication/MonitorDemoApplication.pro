@@ -25,11 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        normal.cpp \
+        triangle.cpp \
         xyz.cpp
 
 HEADERS  += mainwindow.h \
-    normal.h \
+    triangle.h \
     xyz.h
 
 FORMS    += mainwindow.ui

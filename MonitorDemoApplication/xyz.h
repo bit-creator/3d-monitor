@@ -1,10 +1,7 @@
 #ifndef XYZ_H
 #define XYZ_H
 
-#include <iostream>
-
-using std::ostream;
-using std::istream;
+#include "QTextStream"
 
 class XYZ
 {
@@ -26,30 +23,10 @@ public:
     double get_Y() const;
     double get_Z() const;
 
-    friend ostream& operator<<(ostream& out, const XYZ& xyz);
-    friend istream& operator>>(istream& in, XYZ& xyz);
-
 private:
     double _X;
     double _Y;
     double _Z;
 };
-
-ostream& operator<<(ostream& out, const XYZ& xyz)
-{
-    out << xyz.get_X() << " "
-        << xyz.get_Y() << " "
-        << xyz.get_Z() << '\n';
-
-    return out;
-}
-
-istream& operator>>(istream& in, XYZ& xyz)
-{
-    in >> xyz._X >> xyz._Y >> xyz._Z;
-
-    return in;
-}
-
 
 #endif // XYZ_H

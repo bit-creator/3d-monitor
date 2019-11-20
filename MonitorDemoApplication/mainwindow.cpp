@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QFileDialog"
+#include "QMessageBox"
+#include "triangle.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("3d monitor");
 }
 
-
-
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -19,5 +19,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_open_triggered()
 {
-    QFileDialog::getOpenFileName(this, "", "", "STL (*.stl)");
+    QString model_name = QFileDialog::getOpenFileName(this, "", "", "STL (*.stl)");
+    if(model_name != "")
+    {
+        QFile model(model_name);
+        if(!model.open(QIODevice::ReadOnly))
+        {
+            QMessageBox::critical(this, tr("error"), tr("could not open file"));
+            return;
+        }
+        else
+        {
+            triangle Triangle;
+            QTextStream in(&model);
+//            double x;
+//            in >> x;
+        }
+    }
 }
