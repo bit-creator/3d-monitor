@@ -19,8 +19,8 @@ public:
 
     XYZ get_normal() const;
 
-    void set_normal_as_file(istream in, XYZ& Normal);     //как альтернатива можно перегружать
-    normal& get_normal_as_file(ostream out, XYZ& Normal); //операцию взятия/помещения в поток
+    void set_normal_as_file(istream in, normal& Normal);     //как альтернатива можно перегружать
+    normal& get_normal_as_file(ostream out, normal& Normal); //операцию взятия/помещения в поток
 
     friend ostream& operator<<(ostream& out, const normal& Normal);
     friend istream& operator>>(istream& in, normal& Normal);
@@ -31,14 +31,14 @@ private:
 
 ostream& operator<<(ostream& out, const normal& Normal)
 {
-    out << Normal.;
+    out << Normal;
 
     return out;
 }
 
-istream& operator>>(istream& in, XYZ& xyz)
+istream& operator>>(istream& in, normal& Normal)
 {
-    in >> xyz._X >> xyz._Y >> xyz._Z;
+    in >> Normal;
 
     return in;
 }
