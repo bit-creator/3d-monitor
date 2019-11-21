@@ -25,7 +25,7 @@
    </property>
    <widget class="QMenu" name="menufile">
     <property name="title">
-     <string>file</string>
+     <string>File</string>
     </property>
     <addaction name="action_open"/>
    </widget>
@@ -48,7 +48,7 @@
      <normaloff>:/icon/icons/Open.png</normaloff>:/icon/icons/Open.png</iconset>
    </property>
    <property name="text">
-    <string>open</string>
+    <string>Open</string>
    </property>
   </action>
  </widget>

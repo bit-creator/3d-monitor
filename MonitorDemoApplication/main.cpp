@@ -8,7 +8,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    std::cout << "I set some change";
-
     return a.exec();
 }
