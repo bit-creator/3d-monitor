@@ -3,6 +3,7 @@
 #include "QFileDialog"
 #include "QMessageBox"
 //#include "triangle.h"
+#include "vector.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -31,8 +32,20 @@ void MainWindow::on_action_open_triggered()
         else
         {
             QTextStream in(&model);
+            set_model(in);
 //            double x;
-//            in >> x;
+//            Vector vector;
+//            in >> vector;
         }
     }
+}
+
+void MainWindow::set_model(QTextStream& in)
+{
+    char model_title[80];
+    in >> model_title;
+    unsigned int num;
+    in >> num;
+    Vector vec;
+    in >> vec;
 }
