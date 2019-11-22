@@ -1,21 +1,10 @@
 #include "vector.h"
 
-#include "vertex.h"
+Vector::Vector() : Primitive3D(){ }
 
-//Vector::Vector() :
-//    _x(0.),
-//    _y(0.),
-//    _z(0.){ }
+Vector::Vector(Vector& vector) : Primitive3D(vector){ }
 
-//Vector::Vector(Vector& vector) :
-//    _x(vector._x),
-//    _y(vector._y),
-//    _z(vector._z){ }
-
-//Vector::Vector(Vector&& vector) :
-//    _x(vector._x),
-//    _y(vector._y),
-//    _z(vector._z){ }
+Vector::Vector(Vector&& vector) : Primitive3D(vector){ }
 
 Vector& Vector::operator=(const Vector &vector)
 {

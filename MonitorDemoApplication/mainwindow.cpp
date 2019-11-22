@@ -2,8 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include "QMessageBox"
-//#include "triangle.h"
-#include "vector.h"
+#include "model.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,19 +32,13 @@ void MainWindow::on_action_open_triggered()
         {
             QTextStream in(&model);
             set_model(in);
-//            double x;
-//            Vector vector;
-//            in >> vector;
         }
     }
 }
 
 void MainWindow::set_model(QTextStream& in)
 {
-    char model_title[80];
-    in >> model_title;
-    unsigned int num;
-    in >> num;
-    Vector vec;
-    in >> vec;
+    Model model;
+    Model& mod = model;
+    in >> mod;
 }

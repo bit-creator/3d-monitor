@@ -6,9 +6,9 @@
 class Vertex : public Primitive3D
 {
 public:
-//    Vertex();
-//    Vertex(Vertex& vertex);
-//    Vertex(Vertex&& vertex);
+    Vertex();
+    Vertex(Vertex& vertex);
+    Vertex(Vertex&& vertex);
 
     Vertex& operator=(const Vertex& vertex);
     Vertex& operator=(const Vertex&& vertex);

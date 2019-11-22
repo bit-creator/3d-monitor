@@ -31,6 +31,8 @@ public:
     friend QTextStream& operator>>(QTextStream& in, Primitive3D& primitive3D);
     friend QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D);
 
+    friend bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
+
 protected:
     double _x;
     double _y;

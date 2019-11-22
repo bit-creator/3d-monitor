@@ -16,7 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void set_model();
+    void set_model(QTextStream& in);
 
 private slots:
     void on_action_open_triggered();
