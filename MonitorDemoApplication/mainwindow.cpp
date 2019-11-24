@@ -38,7 +38,7 @@ void MainWindow::on_action_open_triggered()
 
 void MainWindow::set_model(QTextStream& in)
 {
-    Model model;
-    Model& mod = model;
-    in >> mod;
+    //Model model;
+    //Model& mod = model;
+    //in >> model;
 }

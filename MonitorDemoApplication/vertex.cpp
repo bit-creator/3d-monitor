@@ -32,7 +32,7 @@ Vertex& Vertex::operator=(const Vertex &&vertex)
 
 Vertex::~Vertex(){ }
 
-QString Vertex::get_type()
+primitive_type Vertex::get_type()
 {
-    return "Vertex";
+    return primitive_type::VERTEX;
 }

@@ -22,10 +22,13 @@ public:
     void set_vertex_2(iter vertex_2);
     void set_vertex_3(iter vertex_3);
 
-    Vector& get_vector() const;
+    const Vector& get_vector() const;
     Vertex& get_vertex_1() const;
     Vertex& get_vertex_2() const;
     Vertex& get_vertex_3() const;
+
+    friend bool operator==(const Triangle& triangle, const Triangle& triangle_);
+    friend bool operator!=(const Triangle& triangle, const Triangle& triangle_);
 
     ~Triangle();
 

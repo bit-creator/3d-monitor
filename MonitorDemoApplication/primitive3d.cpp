@@ -98,11 +98,15 @@ QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D)
 
 bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
-    if(primitive3D_1._x == primitive3D_2._x
+    if(primitive3D_1._x == primitive3D_2._x                // tolerance = 0.000001
             && primitive3D_1._y == primitive3D_2._y
             && primitive3D_1._z == primitive3D_2._z)
         return true;
-    else
-        return false;
+    return false;
+}
+
+bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
+{
+    return !(primitive3D_1==primitive3D_2);
 }
 

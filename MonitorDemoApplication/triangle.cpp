@@ -71,9 +71,9 @@ void Triangle::set_vertex_3(iter vertex_3)
     _vertex_3 = vertex_3;
 }
 
-Vector& Triangle::get_vector() const
+const Vector& Triangle::get_vector() const
 {
-    //return _normal;                          ///
+    return _normal;
 }
 
 Vertex& Triangle::get_vertex_1() const
@@ -89,4 +89,19 @@ Vertex& Triangle::get_vertex_2() const
 Vertex& Triangle::get_vertex_3() const
 {
     return *_vertex_3;
+}
+
+bool operator==(const Triangle& triangle, const Triangle& triangle_)
+{
+    if(triangle._normal == triangle_._normal
+            && triangle._vertex_1 == triangle_._vertex_1
+            && triangle._vertex_2 == triangle_._vertex_2
+            && triangle._vertex_3 == triangle_._vertex_3)
+        return true;
+    return false;
+}
+
+bool operator!=(const Triangle& triangle, const Triangle& triangle_)
+{
+    return !(triangle == triangle_);
 }

@@ -15,7 +15,7 @@ public:
 
     virtual ~Vertex() override;
 
-    QString get_type() override;
+    primitive_type get_type() override;
 
 };
 

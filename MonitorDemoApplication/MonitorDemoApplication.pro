@@ -24,16 +24,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
+        document_manager.cpp \
         mainwindow.cpp \
         model.cpp \
         primitive3d.cpp \
+        singletone.cpp \
         triangle.cpp \
         vector.cpp \
         vertex.cpp
 
 HEADERS  += mainwindow.h \
+    document_manager.h \
     model.h \
     primitive3d.h \
+    singletone.h \
     triangle.h \
     vector.h \
     vertex.h

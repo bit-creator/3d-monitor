@@ -16,7 +16,9 @@ public:
 
     virtual ~Primitive3D();
 
-    virtual QString get_type() = 0;
+    enum class primitive_type {VERTEX, VECTOR};
+
+    virtual primitive_type get_type() = 0;
 
     void set_x(double& x);
     void set_y(double& y);
@@ -32,12 +34,12 @@ public:
     friend QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D);
 
     friend bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
+    friend bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
 
 protected:
     double _x;
     double _y;
     double _z;
-    enum class type {VERTEX, VECTOR};
 };
 
 #endif // PRIMITIVE3D_H

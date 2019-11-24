@@ -32,7 +32,7 @@ Vector& Vector::operator=(const Vector &&vector)
 
 Vector::~Vector(){ }
 
-QString Vector::get_type()
+primitive_type Vector::get_type()
 {
-    return "Vector";
+    return primitive_type::VECTOR;
 }

@@ -1,16 +1,68 @@
 #include "model.h"
 
-Model::Model(){}
+Model::Model(QString model_title,
+    unsigned int num,
+    std::list<Vertex> vertex_data,
+std::list<Triangle> triangle_data) :
+    model_title("0"),
+    num(0),
+    vertex_data(),
+    triangle_data(){}
+
+Model::Model(Model& model) :
+    model_title(model.model_title),
+    num(model.num),
+    data_vertex(model.data_vertex),
+    data_triangle(model.data_triangle) { }
+
+Model::Model(Model&& model) :
+    model_title(model.model_title),
+    num(model.num),
+    data_vertex(model.data_vertex),
+    data_triangle(model.data_triangle) { }
+
+Model& Model::operator=(const Model& model)
+{
+    if(this == &model)
+        return *this;
+
+    model_title = model.model_title;
+    num = model.num;
+    data_vertex = model.data_vertex;
+    data_triangle = model.data_triangle;
+
+    return *this;
+}
+
+
+Model& Model::operator=(const Model&& model)
+{
+    if(this == &model)
+        return *this;
+
+    model_title = model.model_title;
+    num = model.num;
+    data_vertex = model.data_vertex;
+    data_triangle = model.data_triangle;
+
+    return *this;
+}
 
 Model::~Model(){}
 
 QTextStream& operator>>(QTextStream& in, Model model)
 {
-    unsigned short int attribute_byte_count;
+    char title[80];
 
     const Vertex non_initialize;
 
-    in >> model.model_title;
+    unsigned short int attribute_byte_count;
+
+
+    in >> title;
+
+    model.model_title = title;
+
     in >> model.num;
 
     for(size_t i = 0; i < model.num; ++i)
@@ -50,35 +102,35 @@ QTextStream& operator>>(QTextStream& in, Model model)
             }
             if (triangle.get_vertex_1() == non_initialize)
             {
-                model.data_vertex.emplace_back(vertex_1);
+                model.data_vertex.push_back(vertex_1);
                 triangle.set_vertex_1(model.data_vertex.end());
             }
             if (triangle.get_vertex_2() == non_initialize)
             {
-                model.data_vertex.emplace_back(vertex_2);
+                model.data_vertex.push_back(vertex_2);
                 triangle.set_vertex_2(model.data_vertex.end());
             }
             if (triangle.get_vertex_3() == non_initialize)
             {
-                model.data_vertex.emplace_back(vertex_3);
+                model.data_vertex.push_back(vertex_3);
                 triangle.set_vertex_3(model.data_vertex.end());
             }
         }
         else
         {
-            model.data_vertex.emplace_back(vertex_1);
-            model.data_vertex.emplace_back(vertex_2);
-            model.data_vertex.emplace_back(vertex_3);
+            model.data_vertex.push_back(vertex_1);
+            model.data_vertex.push_back(vertex_2);
+            model.data_vertex.push_back(vertex_3);
             triangle.set_vertex_1(model.data_vertex.begin());
             triangle.set_vertex_2(++model.data_vertex.begin());
             triangle.set_vertex_3(model.data_vertex.end());
         }
-        model.data_triangle.emplace_back(triangle);
+        model.data_triangle.push_back(triangle);
     }
     return in;
 }
 
-QTextStream& operator<<(QTextStream& out, Model model)
+QTextStream& operator<<(QTextStream& out, Model& model)
 {
     out << model.model_title
         << model.num;
@@ -92,4 +144,12 @@ QTextStream& operator<<(QTextStream& out, Model model)
             << '0' << ' ' << '0';
     }
     return out;
+}
+
+Model& operator+(const Model& model, const Model& model_)
+{
+    for(auto it = model_.data_triangle.begin(); it != model_.data_triangle.end(); ++it)
+    {
+//        if()
+    }
 }

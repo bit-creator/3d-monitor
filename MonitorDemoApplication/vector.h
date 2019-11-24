@@ -13,7 +13,7 @@ public:
     Vector& operator=(const Vector& vector);
     Vector& operator=(const Vector&& vector);
 
-    QString get_type() override;
+    primitive_type get_type() override;
 
     virtual ~Vector() override;
 };
