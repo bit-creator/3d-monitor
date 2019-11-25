@@ -1,16 +1,19 @@
 #include "primitive3d.h"
+#include <cmath>
+
+constexpr auto tolerance = 0.0000001;
 
 Primitive3D::Primitive3D() :
     _x(0.),
     _y(0.),
     _z(0.){ }
 
-Primitive3D::Primitive3D(Primitive3D& primitive3D) :
+Primitive3D::Primitive3D(const Primitive3D& primitive3D) :
     _x(primitive3D._x),
     _y(primitive3D._y),
     _z(primitive3D._z){ }
 
-Primitive3D::Primitive3D(Primitive3D&& primitive3D) :
+Primitive3D::Primitive3D(const Primitive3D&& primitive3D) :
     _x(primitive3D._x),
     _y(primitive3D._y),
     _z(primitive3D._z){ }
@@ -98,9 +101,9 @@ QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D)
 
 bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
-    if(primitive3D_1._x == primitive3D_2._x                // tolerance = 0.000001
-            && primitive3D_1._y == primitive3D_2._y
-            && primitive3D_1._z == primitive3D_2._z)
+    if(abs(primitive3D_1._x - primitive3D_2._x) < tolerance                // tolerance = 0.000001
+            && abs(primitive3D_1._y - primitive3D_2._y) < tolerance
+            && abs(primitive3D_1._z - primitive3D_2._z) < tolerance)
         return true;
     return false;
 }

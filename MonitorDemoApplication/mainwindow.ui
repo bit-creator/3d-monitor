@@ -28,6 +28,7 @@
      <string>File</string>
     </property>
     <addaction name="action_open"/>
+    <addaction name="action_save_as"/>
    </widget>
    <addaction name="menufile"/>
   </widget>
@@ -40,6 +41,7 @@
    </attribute>
    <addaction name="separator"/>
    <addaction name="action_open"/>
+   <addaction name="action_save_as"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_open">
@@ -49,6 +51,15 @@
    </property>
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icon/icons/Save_As.png</normaloff>:/icon/icons/Save_As.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save as...</string>
    </property>
   </action>
  </widget>

@@ -6,24 +6,11 @@ Triangle::Triangle() :
     _vertex_2(nullptr),
     _vertex_3(nullptr){ }
 
-Triangle::Triangle(Triangle& triangle) :
-    _normal(triangle._normal),
-    _vertex_1(triangle._vertex_1),
-    _vertex_2(triangle._vertex_2),
-    _vertex_3(triangle._vertex_3)
-{
-//    _normal = triangle._normal;
-                                                    // нужно ли глубокое копирование если учесть
-//    Vertex new_vertex_1 = *triangle._vertex_1;    что там итераторы?  И как его сделать. ьлже самое в model
-}
+Triangle::Triangle(const Triangle& triangle){ }
 
-Triangle::Triangle(Triangle&& triangle) :
-    _normal(triangle._normal),
-    _vertex_1(triangle._vertex_1),
-    _vertex_2(triangle._vertex_2),
-    _vertex_3(triangle._vertex_3){ }
+Triangle::Triangle(const Triangle&& triangle) { }
 
-Triangle& Triangle::operator=(Triangle &triangle)
+Triangle& Triangle::operator=(const Triangle &triangle)
 {
     if(this == &triangle)
         return *this;
@@ -36,7 +23,7 @@ Triangle& Triangle::operator=(Triangle &triangle)
     return *this;
 }
 
-Triangle& Triangle::operator=(Triangle&& triangle)
+Triangle& Triangle::operator=(const Triangle&& triangle)
 {
     if(this == &triangle)
         return *this;

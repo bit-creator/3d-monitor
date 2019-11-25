@@ -1,21 +1,14 @@
 #include "model.h"
 
-Model::Model(QString model_title,
-    unsigned int num,
-    std::list<Vertex> vertex_data,
-std::list<Triangle> triangle_data) :
-    model_title("0"),
-    num(0),
-    vertex_data(),
-    triangle_data(){}
+Model::Model(){ }
 
-Model::Model(Model& model) :
+Model::Model(const Model& model) :
     model_title(model.model_title),
     num(model.num),
     data_vertex(model.data_vertex),
     data_triangle(model.data_triangle) { }
 
-Model::Model(Model&& model) :
+Model::Model(const Model&& model) :
     model_title(model.model_title),
     num(model.num),
     data_vertex(model.data_vertex),
@@ -58,14 +51,13 @@ QTextStream& operator>>(QTextStream& in, Model model)
 
     unsigned short int attribute_byte_count;
 
-
     in >> title;
 
     model.model_title = title;
 
     in >> model.num;
 
-    for(size_t i = 0; i < model.num; ++i)
+    for(size_t i = 0; in.atEnd(); ++i)
     {
         Vector vector;
         Vertex vertex_1,
@@ -146,10 +138,15 @@ QTextStream& operator<<(QTextStream& out, Model& model)
     return out;
 }
 
-Model& operator+(const Model& model, const Model& model_)
+//Model& operator+(const Model& model, const Model& model_)
+//{
+//    for(auto it = model_.data_triangle.begin(); it != model_.data_triangle.end(); ++it)
+//    {
+////        if()
+//    }
+//}
+
+Model::Document_Type Model::get_document_type()
 {
-    for(auto it = model_.data_triangle.begin(); it != model_.data_triangle.end(); ++it)
-    {
-//        if()
-    }
+    return Document_Type::STL;
 }

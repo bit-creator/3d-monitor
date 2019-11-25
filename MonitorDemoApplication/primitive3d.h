@@ -8,8 +8,8 @@ class Primitive3D
 {
 public:
     Primitive3D();
-    Primitive3D(Primitive3D& primitive3D);
-    Primitive3D(Primitive3D&& primitive3D);
+    Primitive3D(const Primitive3D& primitive3D);
+    Primitive3D(const Primitive3D&& primitive3D);
 
     Primitive3D& operator=(const Primitive3D& primitive3D);
     Primitive3D& operator=(const Primitive3D&& primitive3D);

@@ -11,11 +11,11 @@ class Triangle
 {
 public:
     Triangle();
-    Triangle(Triangle& triangle);
-    Triangle(Triangle&& triangle);
+    Triangle(const Triangle& triangle);
+    Triangle(const Triangle&& triangle);
 
-    Triangle& operator=(Triangle& triangle);
-    Triangle& operator=(Triangle&& triangle);
+    Triangle& operator=(const Triangle& triangle);
+    Triangle& operator=(const Triangle&& triangle);
 
     void set_vector(Vector vector);
     void set_vertex_1(iter vertex_1);

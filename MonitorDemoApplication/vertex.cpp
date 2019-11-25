@@ -2,9 +2,9 @@
 
 Vertex::Vertex() : Primitive3D(){ }
 
-Vertex::Vertex(Vertex& vertex) : Primitive3D(vertex){ }
+Vertex::Vertex(const Vertex& vertex) : Primitive3D(vertex){ }
 
-Vertex::Vertex(Vertex&& vertex) : Primitive3D(vertex){ }
+Vertex::Vertex(const Vertex&& vertex) : Primitive3D(vertex){ }
 
 Vertex& Vertex::operator=(const Vertex &vertex)
 {
@@ -32,7 +32,7 @@ Vertex& Vertex::operator=(const Vertex &&vertex)
 
 Vertex::~Vertex(){ }
 
-primitive_type Vertex::get_type()
+Vertex::primitive_type Vertex::get_type()
 {
     return primitive_type::VERTEX;
 }

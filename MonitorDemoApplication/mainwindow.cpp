@@ -3,6 +3,7 @@
 #include "QFileDialog"
 #include "QMessageBox"
 #include "model.h"
+#include "document_manager.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,7 +39,28 @@ void MainWindow::on_action_open_triggered()
 
 void MainWindow::set_model(QTextStream& in)
 {
-    //Model model;
+    Document_manager::get_instance();
+    Model model;
     //Model& mod = model;
-    //in >> model;
+    in >> model;
+}
+
+void MainWindow::on_action_save_as_triggered()
+{
+    QString model_name = QFileDialog::getSaveFileName(this, tr("Save File"), "",
+        tr("STL (*.stl);;"));
+
+    if(!model_name.isEmpty())
+    {
+        QFile model(model_name);
+        if(!model.open(QIODevice::WriteOnly))
+        {
+            QMessageBox::critical(this, tr("error"), tr("could not open file"));
+        }
+        else
+        {
+            QTextStream out(&model);
+
+        }
+    }
 }
