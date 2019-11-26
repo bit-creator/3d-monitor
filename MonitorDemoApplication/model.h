@@ -21,7 +21,7 @@ public:
     Document_Type get_document_type() override;
 
     friend QTextStream& operator>>(QTextStream& in, Model model);
-    friend QTextStream& operator<<(QTextStream& out, Model& model);
+    friend QTextStream& operator<<(QTextStream& out, const Model& model);
 
     //friend Model& operator+(const Model& model, const Model& model_);
 

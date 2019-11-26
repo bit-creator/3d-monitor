@@ -32,17 +32,9 @@ void MainWindow::on_action_open_triggered()
         else
         {
             QTextStream in(&model);
-            set_model(in);
+            Document_manager::get_instance().set_model(in);
         }
     }
-}
-
-void MainWindow::set_model(QTextStream& in)
-{
-    Document_manager::get_instance();
-    Model model;
-    //Model& mod = model;
-    in >> model;
 }
 
 void MainWindow::on_action_save_as_triggered()
@@ -60,7 +52,7 @@ void MainWindow::on_action_save_as_triggered()
         else
         {
             QTextStream out(&model);
-
+            Document_manager::get_instance().save_active_model(out);
         }
     }
 }

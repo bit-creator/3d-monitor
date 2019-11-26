@@ -122,12 +122,12 @@ QTextStream& operator>>(QTextStream& in, Model model)
     return in;
 }
 
-QTextStream& operator<<(QTextStream& out, Model& model)
+QTextStream& operator<<(QTextStream& out,const Model& model)
 {
     out << model.model_title
         << model.num;
 
-    for(iter_t it = model.data_triangle.begin(); it != model.data_triangle.end(); ++it)
+    for(auto it = model.data_triangle.begin(); it != model.data_triangle.end(); ++it)
     {
         out << it->get_vector()
             << it->get_vertex_1()
