@@ -2,7 +2,7 @@
 #define PRIMITIVE3D_H
 
 #include <QString>
-#include <QTextStream>
+#include <fstream>
 
 class Primitive3D
 {
@@ -20,18 +20,18 @@ public:
 
     virtual primitive_type get_type() = 0;
 
-    void set_x(double& x);
-    void set_y(double& y);
-    void set_z(double& z);
+    void setX(double& x);
+    void setY(double& y);
+    void setZ(double& z);
 
-    void set_koordinate(double& x, double& y, double& z);
+    void setKoordinate(double& x, double& y, double& z);
 
-    double get_x() const;
-    double get_y() const;
-    double get_z() const;
+    double getX() const;
+    double getY() const;
+    double getZ() const;
 
-    friend QTextStream& operator>>(QTextStream& in, Primitive3D& primitive3D);
-    friend QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D);
+    friend std::ifstream& operator>>(std::ifstream& in, Primitive3D& primitive3D);
+    friend std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D);
 
     friend bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
     friend bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);

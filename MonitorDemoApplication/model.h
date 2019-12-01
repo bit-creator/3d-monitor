@@ -6,30 +6,30 @@
 
 using iter_t = std::list<Triangle>::iterator;
 
-class Model : public Document
+class ModelSTL : public Document
 {
 public:
-    Model();
-    Model(const Model& model);
-    Model(const Model&& model);
+    ModelSTL(QString filename);
+    ModelSTL(const ModelSTL& model);
+    ModelSTL(const ModelSTL&& model);
 
-    Model& operator=(const Model& model);
-    Model& operator=(const Model&& model);
+    ModelSTL& operator=(const ModelSTL& model);
+    ModelSTL& operator=(const ModelSTL&& model);
 
-    virtual ~Model() override;
+    virtual ~ModelSTL() override;
 
-    Document_Type get_document_type() override;
+    virtual DocumentType GetType() const override;
+    virtual bool Open() override;
+    virtual bool Save() override;
 
-    friend QTextStream& operator>>(QTextStream& in, Model model);
-    friend QTextStream& operator<<(QTextStream& out, const Model& model);
-
-    //friend Model& operator+(const Model& model, const Model& model_);
+    friend std::ifstream& operator>>(std::ifstream& in, ModelSTL model);
+    friend std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model);
 
 private:
-    QString model_title;
-    unsigned int num;
-    std::list<Vertex> data_vertex;
-    std::list<Triangle> data_triangle;
+    QString _model_title;
+    uint32_t _num;
+    std::list<Vertex> _data_vertex;
+    std::list<Triangle> _data_triangle;
 };
 
 #endif // MODEL_H

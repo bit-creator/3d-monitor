@@ -1,63 +1,76 @@
 #include "model.h"
+#include <QFile>
+#include <fstream>
 
-Model::Model(){ }
 
-Model::Model(const Model& model) :
-    model_title(model.model_title),
-    num(model.num),
-    data_vertex(model.data_vertex),
-    data_triangle(model.data_triangle) { }
+ModelSTL::ModelSTL(QString filename)
+    : Document(filename)
+{
 
-Model::Model(const Model&& model) :
-    model_title(model.model_title),
-    num(model.num),
-    data_vertex(model.data_vertex),
-    data_triangle(model.data_triangle) { }
+}
 
-Model& Model::operator=(const Model& model)
+ModelSTL::ModelSTL(const ModelSTL& model)
+    : Document(model.GetName())
+    , _model_title(model._model_title)
+    , _num(model._num)
+    , _data_vertex(model._data_vertex)
+    , _data_triangle(model._data_triangle)
+{
+
+}
+
+ModelSTL::ModelSTL(const ModelSTL&& model)
+    : Document(model.GetName())
+    , _model_title(model._model_title)
+    , _num(model._num)
+    , _data_vertex(model._data_vertex)
+    , _data_triangle(model._data_triangle)
+{
+
+}
+
+ModelSTL& ModelSTL::operator=(const ModelSTL& model)
 {
     if(this == &model)
         return *this;
 
-    model_title = model.model_title;
-    num = model.num;
-    data_vertex = model.data_vertex;
-    data_triangle = model.data_triangle;
+    _model_title = model._model_title;
+    _num = model._num;
+    _data_vertex = model._data_vertex;
+    _data_triangle = model._data_triangle;
 
     return *this;
 }
 
 
-Model& Model::operator=(const Model&& model)
+ModelSTL& ModelSTL::operator=(const ModelSTL&& model)
 {
     if(this == &model)
         return *this;
 
-    model_title = model.model_title;
-    num = model.num;
-    data_vertex = model.data_vertex;
-    data_triangle = model.data_triangle;
+    _model_title = model._model_title;
+    _num = model._num;
+    _data_vertex = model._data_vertex;
+    _data_triangle = model._data_triangle;
 
     return *this;
 }
 
-Model::~Model(){}
+ModelSTL::~ModelSTL(){}
 
-QTextStream& operator>>(QTextStream& in, Model model)
+std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
 {
-    char title[80];
-
     const Vertex non_initialize;
 
     unsigned short int attribute_byte_count;
 
-    in >> title;
+    char str[80];
+    in.read(str, 80);
+    model._model_title = str;
 
-    model.model_title = title;
+    in >> model._num;
 
-    in >> model.num;
-
-    for(size_t i = 0; in.atEnd(); ++i)
+    for(size_t i = 0; in.end; ++i)
     {
         Vector vector;
         Vertex vertex_1,
@@ -73,80 +86,107 @@ QTextStream& operator>>(QTextStream& in, Model model)
 
         Triangle triangle;
 
-        triangle.set_vector(vector);
+        triangle.setVector(vector);
 
-        if(!model.data_vertex.empty())
+        if(!model._data_vertex.empty())
         {
-            for(iter it = model.data_vertex.begin(); it != model.data_vertex.end(); ++it)
+            for(iter it = model._data_vertex.begin(); it != model._data_vertex.end(); ++it)
             {
                 if(*it == vertex_1)
                 {
-                    triangle.set_vertex_1(it);
+                    triangle.setVertex_1(it);
                 }
                 else if (*it == vertex_2)
                 {
-                    triangle.set_vertex_2(it);
+                    triangle.setVertex_2(it);
                 }
                 else if (*it == vertex_3)
                 {
-                    triangle.set_vertex_3(it);
+                    triangle.setVertex_3(it);
                 }
             }
-            if (triangle.get_vertex_1() == non_initialize)
+            if (triangle.getVertex_1() == non_initialize)
             {
-                model.data_vertex.push_back(vertex_1);
-                triangle.set_vertex_1(model.data_vertex.end());
+                model._data_vertex.push_back(vertex_1);
+                triangle.setVertex_1(model._data_vertex.end());
             }
-            if (triangle.get_vertex_2() == non_initialize)
+            if (triangle.getVertex_2() == non_initialize)
             {
-                model.data_vertex.push_back(vertex_2);
-                triangle.set_vertex_2(model.data_vertex.end());
+                model._data_vertex.push_back(vertex_2);
+                triangle.setVertex_2(model._data_vertex.end());
             }
-            if (triangle.get_vertex_3() == non_initialize)
+            if (triangle.getVertex_3() == non_initialize)
             {
-                model.data_vertex.push_back(vertex_3);
-                triangle.set_vertex_3(model.data_vertex.end());
+                model._data_vertex.push_back(vertex_3);
+                triangle.setVertex_3(model._data_vertex.end());
             }
         }
         else
         {
-            model.data_vertex.push_back(vertex_1);
-            model.data_vertex.push_back(vertex_2);
-            model.data_vertex.push_back(vertex_3);
-            triangle.set_vertex_1(model.data_vertex.begin());
-            triangle.set_vertex_2(++model.data_vertex.begin());
-            triangle.set_vertex_3(model.data_vertex.end());
+            model._data_vertex.push_back(vertex_1);
+            model._data_vertex.push_back(vertex_2);
+            model._data_vertex.push_back(vertex_3);
+            triangle.setVertex_1(model._data_vertex.begin());
+            triangle.setVertex_2(++model._data_vertex.begin());
+            triangle.setVertex_3(model._data_vertex.end());
         }
-        model.data_triangle.push_back(triangle);
+        model._data_triangle.push_back(triangle);
     }
     return in;
 }
 
-QTextStream& operator<<(QTextStream& out,const Model& model)
+std::ofstream& operator<<(std::ofstream& out,const ModelSTL& model)
 {
-    out << model.model_title
-        << model.num;
+    out << model._model_title
+        << model._num;
 
-    for(auto it = model.data_triangle.begin(); it != model.data_triangle.end(); ++it)
+    for(auto it = model._data_triangle.begin(); it != model._data_triangle.end(); ++it)
     {
-        out << it->get_vector()
-            << it->get_vertex_1()
-            << it->get_vertex_2()
-            << it->get_vertex_3()
+        out << it->getVector()
+            << it->getVertex_1()
+            << it->getVertex_2()
+            << it->getVertex_3()
             << '0' << ' ' << '0';
     }
     return out;
 }
 
-//Model& operator+(const Model& model, const Model& model_)
-//{
-//    for(auto it = model_.data_triangle.begin(); it != model_.data_triangle.end(); ++it)
-//    {
-////        if()
-//    }
-//}
-
-Model::Document_Type Model::get_document_type()
+ModelSTL::DocumentType ModelSTL::GetType() const
 {
-    return Document_Type::STL;
+    return DocumentType::STL;
+}
+
+bool ModelSTL::Open()
+{
+    bool result = false;
+
+    QFile model(GetName());
+    if(model.open(QIODevice::ReadWrite | QIODevice::Text))
+    {
+        QString error = model.errorString();
+        std::string filename = GetName().toStdString();
+        std::ifstream in(filename, std::ios::binary);
+        in >> *this;
+        in.close();
+        result = true;
+    }
+
+    return result;
+}
+
+bool ModelSTL::Save()
+{
+    bool result = false;
+
+    QFile model(GetName());
+    if(model.open(QIODevice::WriteOnly))
+    {
+        std::string filename = GetName().toStdString();
+        std::ofstream out(filename, std::ios::binary);
+        out << *this;
+
+        result = true;
+    }
+
+    return result;
 }

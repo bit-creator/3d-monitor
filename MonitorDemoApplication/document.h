@@ -1,26 +1,41 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
-#include<QTextStream>
+#include<fstream>
+#include<QString>
+#include<memory>
 
-class Document
+class Document// : std::enable_shared_from_this<Document>
 {
 public:
-    Document();
+    enum class DocumentType
+    {
+        STL,
+        OBJ
+    };
+
+    Document(QString filename);
     Document(const Document& document);
     Document(const Document&& document);
 
     Document& operator=(const Document& document);
     Document& operator=(const Document&& document);
 
-    enum class Document_Type {STL, OBJ};
-
-    virtual Document_Type get_document_type() = 0;
-
     virtual ~Document();
 
-    friend QTextStream& operator>>(QTextStream& in, Document& document);
-    friend QTextStream& operator<<(QTextStream& out, Document& document);
+    virtual DocumentType GetType() const = 0;
+
+    virtual bool Open() = 0;
+    virtual bool Save() = 0;
+
+    bool SaveAs(QString filename);
+    QString GetName() const;
+
+    friend std::ifstream& operator>>(std::ifstream& in, Document& document);
+    friend std::ofstream& operator<<(std::ofstream& out, Document& document);
+
+private:
+    QString _filename;
 };
 
 #endif // DOCUMENT_H

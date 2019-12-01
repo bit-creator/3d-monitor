@@ -17,15 +17,15 @@ public:
     Triangle& operator=(const Triangle& triangle);
     Triangle& operator=(const Triangle&& triangle);
 
-    void set_vector(Vector vector);
-    void set_vertex_1(iter vertex_1);
-    void set_vertex_2(iter vertex_2);
-    void set_vertex_3(iter vertex_3);
+    void setVector(Vector vector);
+    void setVertex_1(iter vertex_1);
+    void setVertex_2(iter vertex_2);
+    void setVertex_3(iter vertex_3);
 
-    const Vector& get_vector() const;
-    Vertex& get_vertex_1() const;
-    Vertex& get_vertex_2() const;
-    Vertex& get_vertex_3() const;
+    const Vector& getVector() const;
+    Vertex& getVertex_1() const;
+    Vertex& getVertex_2() const;
+    Vertex& getVertex_3() const;
 
     friend bool operator==(const Triangle& triangle, const Triangle& triangle_);
     friend bool operator!=(const Triangle& triangle, const Triangle& triangle_);

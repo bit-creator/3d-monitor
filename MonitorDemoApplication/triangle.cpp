@@ -1,14 +1,23 @@
 #include "triangle.h"
 
-Triangle::Triangle() :
-    _normal(Vector()),
-    _vertex_1(nullptr),
-    _vertex_2(nullptr),
-    _vertex_3(nullptr){ }
+Triangle::Triangle()
+    : _normal(Vector()),
+      _vertex_1(nullptr),
+      _vertex_2(nullptr),
+      _vertex_3(nullptr)
+{
 
-Triangle::Triangle(const Triangle& triangle){ }
+}
 
-Triangle::Triangle(const Triangle&& triangle) { }
+Triangle::Triangle(const Triangle& triangle)
+{
+
+}
+
+Triangle::Triangle(const Triangle&& triangle)
+{
+
+}
 
 Triangle& Triangle::operator=(const Triangle &triangle)
 {
@@ -38,42 +47,42 @@ Triangle& Triangle::operator=(const Triangle&& triangle)
 
 Triangle::~Triangle(){ }
 
-void Triangle::set_vector(Vector vector)
+void Triangle::setVector(Vector vector)
 {
     _normal = vector;
 }
 
-void Triangle::set_vertex_1(iter vertex_1)
+void Triangle::setVertex_1(iter vertex_1)
 {
     _vertex_1 = vertex_1;
 }
 
-void Triangle::set_vertex_2(iter vertex_2)
+void Triangle::setVertex_2(iter vertex_2)
 {
     _vertex_2 = vertex_2;
 }
 
-void Triangle::set_vertex_3(iter vertex_3)
+void Triangle::setVertex_3(iter vertex_3)
 {
     _vertex_3 = vertex_3;
 }
 
-const Vector& Triangle::get_vector() const
+const Vector& Triangle::getVector() const
 {
     return _normal;
 }
 
-Vertex& Triangle::get_vertex_1() const
+Vertex& Triangle::getVertex_1() const
 {
     return *_vertex_1;
 }
 
-Vertex& Triangle::get_vertex_2() const
+Vertex& Triangle::getVertex_2() const
 {
     return *_vertex_2;
 }
 
-Vertex& Triangle::get_vertex_3() const
+Vertex& Triangle::getVertex_3() const
 {
     return *_vertex_3;
 }

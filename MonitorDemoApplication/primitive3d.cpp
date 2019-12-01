@@ -3,20 +3,29 @@
 
 constexpr auto tolerance = 0.0000001;
 
-Primitive3D::Primitive3D() :
-    _x(0.),
-    _y(0.),
-    _z(0.){ }
+Primitive3D::Primitive3D()
+    : _x(0.),
+      _y(0.),
+      _z(0.)
+{
 
-Primitive3D::Primitive3D(const Primitive3D& primitive3D) :
-    _x(primitive3D._x),
-    _y(primitive3D._y),
-    _z(primitive3D._z){ }
+}
 
-Primitive3D::Primitive3D(const Primitive3D&& primitive3D) :
-    _x(primitive3D._x),
-    _y(primitive3D._y),
-    _z(primitive3D._z){ }
+Primitive3D::Primitive3D(const Primitive3D& primitive3D)
+    : _x(primitive3D._x),
+      _y(primitive3D._y),
+      _z(primitive3D._z)
+{
+
+}
+
+Primitive3D::Primitive3D(const Primitive3D&& primitive3D)
+    : _x(primitive3D._x),
+      _y(primitive3D._y),
+      _z(primitive3D._z)
+{
+
+}
 
 Primitive3D& Primitive3D::operator=(const Primitive3D& primitive3D)
 {
@@ -44,44 +53,44 @@ Primitive3D& Primitive3D::operator=(const Primitive3D&& primitive3D)
 
 Primitive3D::~Primitive3D(){ }
 
-void Primitive3D::set_x(double& x)
+void Primitive3D::setX(double& x)
 {
     _x = x;
 }
 
-void Primitive3D::set_y(double& y)
+void Primitive3D::setY(double& y)
 {
     _y = y;
 }
 
-void Primitive3D::set_z(double& z)
+void Primitive3D::setZ(double& z)
 {
     _z = z;
 }
 
-void Primitive3D::set_koordinate(double& x, double& y, double& z)
+void Primitive3D::setKoordinate(double& x, double& y, double& z)
 {
     _x = x;
     _y = y;
     _z = z;
 }
 
-double Primitive3D::get_x() const
+double Primitive3D::getX() const
 {
     return _x;
 }
 
-double Primitive3D::get_y() const
+double Primitive3D::getY() const
 {
     return _y;
 }
 
-double Primitive3D::get_z() const
+double Primitive3D::getZ() const
 {
     return _z;
 }
 
-QTextStream& operator>>(QTextStream& in, Primitive3D& primitive3D)
+std::ifstream& operator>>(std::ifstream& in, Primitive3D& primitive3D)
 {
     in >> primitive3D._x
        >> primitive3D._y
@@ -90,7 +99,7 @@ QTextStream& operator>>(QTextStream& in, Primitive3D& primitive3D)
     return in;
 }
 
-QTextStream& operator<<(QTextStream& out, const Primitive3D& primitive3D)
+std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D)
 {
     out << primitive3D._x << " "
         << primitive3D._y << " "

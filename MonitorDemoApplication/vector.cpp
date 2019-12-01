@@ -1,10 +1,22 @@
 #include "vector.h"
 
-Vector::Vector() : Primitive3D(){ }
+Vector::Vector()
+    : Primitive3D()
+{
 
-Vector::Vector(Vector& vector) : Primitive3D(vector){ }
+}
 
-Vector::Vector(Vector&& vector) : Primitive3D(vector){ }
+Vector::Vector(Vector& vector)
+    : Primitive3D(vector)
+{
+
+}
+
+Vector::Vector(Vector&& vector)
+    : Primitive3D(vector)
+{
+
+}
 
 Vector& Vector::operator=(const Vector &vector)
 {
