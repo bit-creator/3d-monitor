@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "QTextStream"
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +17,8 @@ public:
 
 private slots:
     void on_action_open_triggered();
+
+    void on_action_save_as_triggered();
 
 private:
     Ui::MainWindow *ui;

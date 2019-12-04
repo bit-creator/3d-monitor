@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 #include "QMessageBox"
-//#include "triangle.h"
+#include "documentmanager.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,17 +22,28 @@ void MainWindow::on_action_open_triggered()
     QString model_name = QFileDialog::getOpenFileName(this, "", "", "STL (*.stl)");
     if(!model_name.isEmpty())
     {
-        QFile model(model_name);
-        if(!model.open(QIODevice::ReadOnly))
+        if(!DocumentManager::GetInstance().OpenDocument(model_name, Document::DocumentType::STL))
         {
             QMessageBox::critical(this, tr("error"), tr("could not open file"));
-            return;
+        }
+    }
+}
+
+void MainWindow::on_action_save_as_triggered()
+{
+    QString model_name = QFileDialog::getSaveFileName(this, tr("Save File"), "",
+        tr("STL (*.stl);;"));
+
+    if(!model_name.isEmpty())
+    {
+        QFile model(model_name);
+        if(!model.open(QIODevice::WriteOnly))
+        {
+            QMessageBox::critical(this, tr("error"), tr("could not open file"));
         }
         else
         {
-            QTextStream in(&model);
-//            double x;
-//            in >> x;
+            DocumentManager::GetInstance().SaveDocumentAs(DocumentManager::GetInstance().GetActiveDocument(), model_name);
         }
     }
 }

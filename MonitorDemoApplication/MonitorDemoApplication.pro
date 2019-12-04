@@ -24,9 +24,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        document.cpp \
+        mainwindow.cpp \
+    modelobj.cpp \
+    modelstl.cpp \
+        primitive3d.cpp \
+        triangle.cpp \
+    trianglevertex.cpp \
+        vector.cpp \
+        vertex.cpp \
+    documentmanager.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    document.h \
+    modelobj.h \
+    modelstl.h \
+    primitive3d.h \
+    triangle.h \
+    trianglevertex.h \
+    vector.h \
+    vertex.h \
+    documentmanager.h
 
 FORMS    += mainwindow.ui
 
