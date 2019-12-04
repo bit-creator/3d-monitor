@@ -44,7 +44,7 @@ Vertex& Vertex::operator=(const Vertex &&vertex)
 
 Vertex::~Vertex(){ }
 
-Vertex::primitive_type Vertex::get_type()
+Vertex::primitiveType Vertex::getType()
 {
-    return primitive_type::VERTEX;
+    return primitiveType::VERTEX;
 }

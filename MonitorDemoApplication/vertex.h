@@ -15,8 +15,7 @@ public:
 
     virtual ~Vertex() override;
 
-    primitive_type get_type() override;
-
+    primitiveType getType() override;
 };
 
 #endif // VERTEX_H

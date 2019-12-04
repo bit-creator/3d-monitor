@@ -30,6 +30,8 @@ SOURCES += main.cpp\
     modelstl.cpp \
         primitive3d.cpp \
         triangle.cpp \
+    trianglevertex.cpp \
+    uvcoordinate.cpp \
         vector.cpp \
         vertex.cpp \
     documentmanager.cpp
@@ -40,6 +42,8 @@ HEADERS  += mainwindow.h \
     modelstl.h \
     primitive3d.h \
     triangle.h \
+    trianglevertex.h \
+    uvcoordinate.h \
     vector.h \
     vertex.h \
     documentmanager.h

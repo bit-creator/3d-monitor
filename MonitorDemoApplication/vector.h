@@ -13,7 +13,7 @@ public:
     Vector& operator=(const Vector& vector);
     Vector& operator=(const Vector&& vector);
 
-    primitive_type get_type() override;
+    primitiveType getType() override;
 
     virtual ~Vector() override;
 };

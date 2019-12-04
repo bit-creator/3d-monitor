@@ -16,9 +16,13 @@ public:
 
     virtual ~Primitive3D();
 
-    enum class primitive_type {VERTEX, VECTOR};
+    enum class primitiveType
+    {
+        VERTEX,
+        VECTOR
+    };
 
-    virtual primitive_type get_type() = 0;
+    virtual primitiveType getType() = 0;
 
     void setX(double& x);
     void setY(double& y);

@@ -44,7 +44,7 @@ Vector& Vector::operator=(const Vector &&vector)
 
 Vector::~Vector(){ }
 
-Vector::primitive_type Vector::get_type()
+Vector::primitiveType Vector::getType()
 {
-    return primitive_type::VECTOR;
+    return primitiveType::VECTOR;
 }
