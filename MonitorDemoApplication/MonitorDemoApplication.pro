@@ -26,7 +26,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         document.cpp \
         mainwindow.cpp \
-        model.cpp \
+    modelobj.cpp \
+    modelstl.cpp \
         primitive3d.cpp \
         triangle.cpp \
         vector.cpp \
@@ -35,7 +36,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     document.h \
-    model.h \
+    modelobj.h \
+    modelstl.h \
     primitive3d.h \
     triangle.h \
     vector.h \

@@ -17,7 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::openTriggered()
+void MainWindow::on_action_open_triggered()
 {
     QString model_name = QFileDialog::getOpenFileName(this, "", "", "STL (*.stl)");
     if(!model_name.isEmpty())
@@ -29,7 +29,7 @@ void MainWindow::openTriggered()
     }
 }
 
-void MainWindow::saveAsTriggered()
+void MainWindow::on_action_save_as_triggered()
 {
     QString model_name = QFileDialog::getSaveFileName(this, tr("Save File"), "",
         tr("STL (*.stl);;"));

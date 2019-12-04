@@ -16,9 +16,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void openTriggered();
+    void on_action_open_triggered();
 
-    void saveAsTriggered();
+    void on_action_save_as_triggered();
 
 private:
     Ui::MainWindow *ui;
