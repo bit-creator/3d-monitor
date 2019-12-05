@@ -22,10 +22,6 @@ public:
 
     friend std::ifstream& operator>>(std::ifstream& in, ModelOBJ model);
     friend std::ofstream& operator<<(std::ofstream& out, const ModelOBJ& model);
-
-private:
-    QString _model_title;
-
 };
 
 #endif // MODELOBJ_H

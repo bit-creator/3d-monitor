@@ -1,6 +1,7 @@
 #ifndef UVCOORDINATE_H
 #define UVCOORDINATE_H
 
+#include <fstream>
 
 class UVCoordinate
 {
@@ -18,12 +19,17 @@ public:
     void setV(double& V);
     void setW(double& W);
 
-    void setKoordinate(double& U, double& V, double& z);
+    void setKoordinate(double& U, double& V, double& W);
 
-    double getX() const;
-    double getY() const;
-    double getZ() const;
+    double getU() const;
+    double getV() const;
+    double getW() const;
 
+    friend std::ifstream& operator>>(std::ifstream& in, UVCoordinate& UV);
+    friend std::ofstream& operator<<(std::ofstream& out, const UVCoordinate& UV);
+
+    friend bool operator==(const UVCoordinate& UV_1, const UVCoordinate& UV_2);
+    friend bool operator!=(const UVCoordinate& UV_1, const UVCoordinate& UV_2);
 
 private:
     double _U;

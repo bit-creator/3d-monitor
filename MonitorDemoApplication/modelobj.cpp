@@ -24,7 +24,11 @@ ModelOBJ& ModelOBJ::operator=(const ModelOBJ& model)
     if(this == &model)
         return *this;
 
-    _model_title = model._model_title;
+    _num = model._num;
+    _data_vertex = model._data_vertex;
+    _data_triangle = model._data_triangle;
+
+
 
     return *this;
 }
@@ -35,7 +39,7 @@ ModelOBJ& ModelOBJ::operator=(const ModelOBJ&& model)
     if(this == &model)
         return *this;
 
-    _model_title = model._model_title;
+
 
     return *this;
 }

@@ -7,8 +7,8 @@ class Vector : public Primitive3D
 {
 public:
     Vector();
-    Vector(Vector& vector);
-    Vector(Vector&& vector);
+    Vector(const Vector& vector);
+    Vector(const Vector&& vector);
 
     Vector& operator=(const Vector& vector);
     Vector& operator=(const Vector&& vector);

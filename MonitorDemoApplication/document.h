@@ -4,6 +4,9 @@
 #include<fstream>
 #include<QString>
 #include<memory>
+#include<list>
+#include"triangle.h"
+#include"trianglevertex.h"
 
 class Document// : std::enable_shared_from_this<Document>
 {
@@ -31,11 +34,33 @@ public:
     bool SaveAs(QString filename);
     QString GetName() const;
 
+    void setGabsritX(double& x);
+    void setGabsritY(double& y);
+    void setGabsritZ(double& z);
+
+    void calculateGabrit();
+    void calculateNum();
+
+    double getGabaritX() const;
+    double getGabaritY() const;
+    double getGabaritZ() const;
+
     friend std::ifstream& operator>>(std::ifstream& in, Document& document);
     friend std::ofstream& operator<<(std::ofstream& out, Document& document);
 
 private:
     QString _filename;
+
+    double _gabaritX;
+    double _gabaritY;
+    double _gabaritZ;
+
+protected:
+    uint32_t _num;
+    std::list<TriangleVertex> _data_vertex;
+    std::list<Triangle> _data_triangle;
+
+
 };
 
 #endif // DOCUMENT_H

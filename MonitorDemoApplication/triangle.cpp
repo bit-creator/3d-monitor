@@ -1,20 +1,28 @@
 #include "triangle.h"
 
 Triangle::Triangle()
-    : _normal(Vector()),
-      _vertex_1(nullptr),
-      _vertex_2(nullptr),
-      _vertex_3(nullptr)
+    : _TriangleNormal(non_init)
+    , _vertex_1(nullptr)
+    , _vertex_2(nullptr)
+    , _vertex_3(nullptr)
 {
 
 }
 
 Triangle::Triangle(const Triangle& triangle)
+    : _TriangleNormal(triangle._TriangleNormal)
+    , _vertex_1(triangle._vertex_1)
+    , _vertex_2(triangle._vertex_2)
+    , _vertex_3(triangle._vertex_3)
 {
 
 }
 
 Triangle::Triangle(const Triangle&& triangle)
+    : _TriangleNormal(triangle._TriangleNormal)
+    , _vertex_1(triangle._vertex_1)
+    , _vertex_2(triangle._vertex_2)
+    , _vertex_3(triangle._vertex_3)
 {
 
 }
@@ -24,7 +32,7 @@ Triangle& Triangle::operator=(const Triangle &triangle)
     if(this == &triangle)
         return *this;
 
-    _normal = triangle._normal;
+    _TriangleNormal = triangle._TriangleNormal;
     _vertex_1 = triangle._vertex_1;
     _vertex_2 = triangle._vertex_2;
     _vertex_3 = triangle._vertex_3;
@@ -37,7 +45,7 @@ Triangle& Triangle::operator=(const Triangle&& triangle)
     if(this == &triangle)
         return *this;
 
-    _normal = triangle._normal;
+    _TriangleNormal = triangle._TriangleNormal;
     _vertex_1 = triangle._vertex_1;
     _vertex_2 = triangle._vertex_2;
     _vertex_3 = triangle._vertex_3;
@@ -47,9 +55,14 @@ Triangle& Triangle::operator=(const Triangle&& triangle)
 
 Triangle::~Triangle(){ }
 
-void Triangle::setVector(Vector vector)
+void Triangle::calculateTriangleVector()
 {
-    _normal = vector;
+    //_normal = vector;
+}
+
+void Triangle::setTriangleVector(Vector& vector)
+{
+    _TriangleNormal = vector;
 }
 
 void Triangle::setVertex_1(iter vertex_1)
@@ -67,9 +80,9 @@ void Triangle::setVertex_3(iter vertex_3)
     _vertex_3 = vertex_3;
 }
 
-const Vector& Triangle::getVector() const
+const Vector& Triangle::getTriangleVector() const
 {
-    return _normal;
+    return _TriangleNormal;
 }
 
 Vertex& Triangle::getVertex_1() const
@@ -89,7 +102,7 @@ Vertex& Triangle::getVertex_3() const
 
 bool operator==(const Triangle& triangle, const Triangle& triangle_)
 {
-    if(triangle._normal == triangle_._normal
+    if(triangle._TriangleNormal == triangle_._TriangleNormal
             && triangle._vertex_1 == triangle_._vertex_1
             && triangle._vertex_2 == triangle_._vertex_2
             && triangle._vertex_3 == triangle_._vertex_3)

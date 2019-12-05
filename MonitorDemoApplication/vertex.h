@@ -16,6 +16,14 @@ public:
     virtual ~Vertex() override;
 
     primitiveType getType() override;
+
+    enum class vertexType
+    {
+        GEOMETRY_VERTEX,
+        GRAPHICS_VERTEX
+    };
+
+    virtual vertexType getVertexType();
 };
 
 #endif // VERTEX_H

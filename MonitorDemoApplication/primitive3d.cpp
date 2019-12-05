@@ -1,7 +1,7 @@
 #include "primitive3d.h"
 #include <cmath>
 
-constexpr auto tolerance = 0.0000001;
+constexpr auto tolerance = 0.001;
 
 Primitive3D::Primitive3D()
     : _x(0.),
@@ -108,6 +108,29 @@ std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D)
     return out;
 }
 
+bool Primitive3D::compareX(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
+{
+    if(primitive3D_1._x > primitive3D_2._x)
+        return true;
+    return false;
+}
+
+
+bool Primitive3D::compareY(const Primitive3D &primitive3D_1, const Primitive3D &primitive3D_2)
+{
+    if(primitive3D_1._y > primitive3D_2._y)
+        return true;
+    return false;
+}
+
+
+bool Primitive3D::compareZ(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
+{
+    if(primitive3D_1._z > primitive3D_2._z)
+        return true;
+    return false;
+}
+
 bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
     if(abs(primitive3D_1._x - primitive3D_2._x) < tolerance                // tolerance = 0.000001
@@ -119,6 +142,6 @@ bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D
 
 bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
-    return !(primitive3D_1==primitive3D_2);
+    return !(primitive3D_1 == primitive3D_2);
 }
 

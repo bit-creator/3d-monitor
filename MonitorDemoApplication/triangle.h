@@ -1,11 +1,11 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
-#include "vertex.h"
+#include "trianglevertex.h"
 #include "vector.h"
 #include <list>
 
-using iter = std::list<Vertex>::iterator;
+using iter = std::list<TriangleVertex>::iterator;
 
 class Triangle
 {
@@ -17,12 +17,14 @@ public:
     Triangle& operator=(const Triangle& triangle);
     Triangle& operator=(const Triangle&& triangle);
 
-    void setVector(Vector vector);
+    void calculateTriangleVector();
+    void setTriangleVector(Vector& vector);
     void setVertex_1(iter vertex_1);
     void setVertex_2(iter vertex_2);
     void setVertex_3(iter vertex_3);
 
-    const Vector& getVector() const;
+
+    const Vector& getTriangleVector() const;
     Vertex& getVertex_1() const;
     Vertex& getVertex_2() const;
     Vertex& getVertex_3() const;
@@ -32,8 +34,10 @@ public:
 
     ~Triangle();
 
+    const Vector non_init;
+
 private:
-    Vector _normal;
+    Vector _TriangleNormal;
     iter _vertex_1;
     iter _vertex_2;
     iter _vertex_3;

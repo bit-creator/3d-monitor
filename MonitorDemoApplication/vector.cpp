@@ -6,13 +6,13 @@ Vector::Vector()
 
 }
 
-Vector::Vector(Vector& vector)
+Vector::Vector(const Vector& vector)
     : Primitive3D(vector)
 {
 
 }
 
-Vector::Vector(Vector&& vector)
+Vector::Vector(const Vector&& vector)
     : Primitive3D(vector)
 {
 

@@ -2,6 +2,8 @@
 #define TRIANGLEVERTEX_H
 
 #include "vertex.h"
+#include "vector.h"
+#include "uvcoordinate.h"
 
 class TriangleVertex : public Vertex
 {
@@ -15,13 +17,23 @@ public:
 
     virtual ~TriangleVertex() override;
 
-    enum class vertexType
-    {
-        GEOMETRY_VERTEX,
-        GRAPHICS_VERTEX
-    };
+    vertexType getVertexType() override;
 
-    virtual vertexType getVertexType();
+    void setNormal(Vector normal);
+    void setNormal(double& x, double& y, double& z);
+    void setTextureCoordinate(UVCoordinate textureCoordinate);
+    void setTextureCoordinate(double& U, double& V, double& W);
+
+    Vector getNormal() const;
+    UVCoordinate getTextureCoordinate() const;
+
+    Vector non_init_vector;
+    UVCoordinate non_init_UV;
+
+private:
+    Vector _normal;
+
+    UVCoordinate _textureCoordinate;
 
 };
 

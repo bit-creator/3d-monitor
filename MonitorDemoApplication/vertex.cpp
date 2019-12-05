@@ -48,3 +48,8 @@ Vertex::primitiveType Vertex::getType()
 {
     return primitiveType::VERTEX;
 }
+
+Vertex::vertexType Vertex::getVertexType()
+{
+    return vertexType::GEOMETRY_VERTEX;
+}
