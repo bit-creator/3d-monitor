@@ -1,7 +1,8 @@
-#include "triangle.h"
+#include"triangle.h"
+#include"noninitvariable.h"
 
 Triangle::Triangle()
-    : _TriangleNormal(non_init)
+    : _TriangleNormal(NonInit::vector)
     , _vertex_1(nullptr)
     , _vertex_2(nullptr)
     , _vertex_3(nullptr)
@@ -65,17 +66,17 @@ void Triangle::setTriangleVector(Vector& vector)
     _TriangleNormal = vector;
 }
 
-void Triangle::setVertex_1(iter vertex_1)
+void Triangle::setVertex_1(std::shared_ptr<GraphicVertex> vertex_1)
 {
     _vertex_1 = vertex_1;
 }
 
-void Triangle::setVertex_2(iter vertex_2)
+void Triangle::setVertex_2(std::shared_ptr<GraphicVertex> vertex_2)
 {
     _vertex_2 = vertex_2;
 }
 
-void Triangle::setVertex_3(iter vertex_3)
+void Triangle::setVertex_3(std::shared_ptr<GraphicVertex> vertex_3)
 {
     _vertex_3 = vertex_3;
 }
@@ -85,17 +86,17 @@ const Vector& Triangle::getTriangleVector() const
     return _TriangleNormal;
 }
 
-Vertex& Triangle::getVertex_1() const
+GraphicVertex& Triangle::getVertex_1() const
 {
     return *_vertex_1;
 }
 
-Vertex& Triangle::getVertex_2() const
+GraphicVertex& Triangle::getVertex_2() const
 {
     return *_vertex_2;
 }
 
-Vertex& Triangle::getVertex_3() const
+GraphicVertex& Triangle::getVertex_3() const
 {
     return *_vertex_3;
 }

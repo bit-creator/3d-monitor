@@ -1,12 +1,29 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "document.h"
-#include "triangle.h"
+#include "document3d.h"
 
-class ModelSTL : public Document
+class ModelSTL : public Document3D
 {
 public:
+    struct STL_poligon
+    {
+        float normalX;
+        float normalY;
+        float normalZ;
+        float point_1X;
+        float point_1Y;
+        float point_1Z;
+        float point_2X;
+        float point_2Y;
+        float point_2Z;
+        float point_3X;
+        float point_3Y;
+        float point_3Z;
+        char bytecount1;
+        char bytecount2;
+    };
+
     ModelSTL(QString filename);
     ModelSTL(const ModelSTL& model);
     ModelSTL(const ModelSTL&& model);
@@ -16,7 +33,8 @@ public:
 
     virtual ~ModelSTL() override;
 
-    virtual DocumentType GetType() const override;
+    virtual MeshType GetMeshType() const override;
+
     virtual bool Open() override;
     virtual bool Save() override;
 

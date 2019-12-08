@@ -1,7 +1,7 @@
 #include "primitive3d.h"
 #include <cmath>
 
-constexpr auto tolerance = 0.001;
+constexpr auto tolerance = 0.00001;
 
 Primitive3D::Primitive3D()
     : _x(0.),
@@ -133,7 +133,7 @@ bool Primitive3D::compareZ(const Primitive3D& primitive3D_1, const Primitive3D& 
 
 bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
-    if(abs(primitive3D_1._x - primitive3D_2._x) < tolerance                // tolerance = 0.000001
+    if(abs(primitive3D_1._x - primitive3D_2._x) < tolerance
             && abs(primitive3D_1._y - primitive3D_2._y) < tolerance
             && abs(primitive3D_1._z - primitive3D_2._z) < tolerance)
         return true;

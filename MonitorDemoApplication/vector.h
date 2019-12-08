@@ -13,9 +13,9 @@ public:
     Vector& operator=(const Vector& vector);
     Vector& operator=(const Vector&& vector);
 
-    primitiveType getType() override;
-
     virtual ~Vector() override;
+
+    primitiveType getPrimitiveType() const override;
 };
 
 #endif // VECTOR_H

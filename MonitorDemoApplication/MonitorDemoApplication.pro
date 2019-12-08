@@ -25,27 +25,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         document.cpp \
+    document3d.cpp \
+    geometricvertex.cpp \
+    graphicvertex.cpp \
         mainwindow.cpp \
     modelobj.cpp \
     modelstl.cpp \
         primitive3d.cpp \
         triangle.cpp \
-    trianglevertex.cpp \
     uvcoordinate.cpp \
         vector.cpp \
-        vertex.cpp \
     documentmanager.cpp
 
 HEADERS  += mainwindow.h \
     document.h \
+    document3d.h \
+    geometricvertex.h \
+    graphicvertex.h \
     modelobj.h \
     modelstl.h \
+    noninitvariable.h \
     primitive3d.h \
     triangle.h \
-    trianglevertex.h \
     uvcoordinate.h \
     vector.h \
-    vertex.h \
     documentmanager.h
 
 FORMS    += mainwindow.ui

@@ -2,19 +2,19 @@
 #include <QFile>
 
 ModelOBJ::ModelOBJ(QString filename)
-    : Document(filename)
+    : Document3D(filename)
 {
 
 }
 
 ModelOBJ::ModelOBJ(const ModelOBJ& model)
-    : Document(model.GetName())
+    : Document3D(model.GetName())
 {
 
 }
 
 ModelOBJ::ModelOBJ(const ModelOBJ&& model)
-    : Document(model.GetName())
+    : Document3D(model.GetName())
 {
 
 }
@@ -46,9 +46,9 @@ ModelOBJ& ModelOBJ::operator=(const ModelOBJ&& model)
 
 ModelOBJ::~ModelOBJ(){}
 
-ModelOBJ::DocumentType ModelOBJ::GetType() const
+ModelOBJ::MeshType ModelOBJ::GetMeshType() const
 {
-    return DocumentType::OBJ;
+    return MeshType::OBJ;
 }
 
 bool ModelOBJ::Open()
@@ -88,21 +88,60 @@ bool ModelOBJ::Save()
 
 std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
 {
-    std::string str;
-    char control_symbol;
-    while(!in.end)
-    {
-        in.get(control_symbol);
-        if(control_symbol == '#')
-        {
-            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-        else if(control_symbol == 'v')
-        {
+//    std::string str;
+//    char control_symbol[2];
+//    while(!in.end)
+//    {
+//        std::list<UVCoordinate> texture_data;
 
-        }
+//        in >> control_symbol;
+//        if(control_symbol[0] == '#')
+//        {
+//            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//        }
+//        else if(control_symbol[0] == 'v'
+//                && control_symbol[1] != 't')
+//        {
+//            TriangleVertex newVertex;
+//            double x = 0.,
+//                   y = 0.,
+//                   z = 0.,
+//                   w = 1.;
+//            in >> x >> y >> z;
 
-    }
+//            newVertex.setKoordinate(x, y, z);
+//            newVertex.setWeight(w);
+
+//            char syb;
+
+//            in >> syb;
+
+//            if(syb != '\n')
+//            {
+//                in >> w;
+//                newVertex.setWeight(w);
+//            }
+//            model._data_vertex.push_back(newVertex);
+//        }
+//        else if(control_symbol[0] == 'v'
+//                && control_symbol[1] == 't')
+//        {
+//            UVCoordinate textureCor;
+
+//            double U, V, W;
+
+//            in >> U >> V >> W;
+
+//            textureCor.setKoordinate(U, V, W);
+
+//            texture_data.push_back(textureCor);
+//        }
+//        else if(control_symbol[0] == 'f')
+//        {
+
+//        }
+
+//    }
     return in;
 }
 

@@ -7,6 +7,12 @@
 class Primitive3D
 {
 public:
+    enum class primitiveType
+    {
+        GEOMETRIC_VERTEX,
+        GEOMETRIC_VECTOR
+    };
+
     Primitive3D();
     Primitive3D(const Primitive3D& primitive3D);
     Primitive3D(const Primitive3D&& primitive3D);
@@ -16,13 +22,7 @@ public:
 
     virtual ~Primitive3D();
 
-    enum class primitiveType
-    {
-        VERTEX,
-        VECTOR
-    };
-
-    virtual primitiveType getType() = 0;
+    virtual primitiveType getPrimitiveType() const = 0;
 
     void setX(double& x);
     void setY(double& y);
@@ -43,7 +43,6 @@ public:
 
     friend std::ifstream& operator>>(std::ifstream& in, Primitive3D& primitive3D);
     friend std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D);
-
 
 protected:
     double _x;

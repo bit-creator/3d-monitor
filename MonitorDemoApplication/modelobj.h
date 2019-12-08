@@ -1,9 +1,9 @@
 #ifndef MODELOBJ_H
 #define MODELOBJ_H
 
-#include "document.h";
+#include "document3d.h"
 
-class ModelOBJ : public Document
+class ModelOBJ : public Document3D
 {
 public:
     ModelOBJ(QString filename);
@@ -15,7 +15,7 @@ public:
 
     virtual ~ModelOBJ() override;
 
-    virtual DocumentType GetType() const override;
+    virtual MeshType GetMeshType() const override;
 
     virtual bool Open() override;
     virtual bool Save() override;
