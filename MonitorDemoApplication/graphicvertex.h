@@ -19,21 +19,21 @@ public:
 
     vertexType getVertexType() const override;
 
-    void setWeight(double& weight);
     void setNormal(Vector& normal);
-    void setNormal(double& x, double& y, double& z);
     void setTextureCoordinate(UVCoordinate& textureCoordinate);
-    void setTextureCoordinate(double& U, double& V, double& W);
+    void setGeometricVertex(GeometricVertex& vertex);
 
-    double getWeight() const;
+    void setWeight(float& weight);
+    void setNormal(float& x, float& y, float& z);
+    void setTextureCoordinate(float& U, float& V, float& W);
+
+    float getWeight() const;
     Vector getNormal() const;
     UVCoordinate getTextureCoordinate() const;
-
-    Vector non_init_vector;
-    UVCoordinate non_init_UV;
+    //GeometricVertex getGeometricVertex() const;
 
 private:
-    double _weight;
+    float _weight;
     Vector _normal;
     UVCoordinate _textureCoordinate;
 };

@@ -16,6 +16,9 @@ public:
     virtual ~Vector() override;
 
     primitiveType getPrimitiveType() const override;
+
+    void normalizeNormal(Vector& normal);
+    float getLength(Vector& vector);
 };
 
 #endif // VECTOR_H

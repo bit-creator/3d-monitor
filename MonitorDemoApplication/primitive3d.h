@@ -24,15 +24,15 @@ public:
 
     virtual primitiveType getPrimitiveType() const = 0;
 
-    void setX(double& x);
-    void setY(double& y);
-    void setZ(double& z);
+    void setX(float& x);
+    void setY(float& y);
+    void setZ(float& z);
 
-    void setKoordinate(double& x, double& y, double& z);
+    void setKoordinate(float& x, float& y, float& z);
 
-    double getX() const;
-    double getY() const;
-    double getZ() const;
+    float getX() const;
+    float getY() const;
+    float getZ() const;
 
     friend bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
     friend bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
@@ -45,9 +45,9 @@ public:
     friend std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D);
 
 protected:
-    double _x;
-    double _y;
-    double _z;
+    float _x;
+    float _y;
+    float _z;
 };
 
 #endif // PRIMITIVE3D_H

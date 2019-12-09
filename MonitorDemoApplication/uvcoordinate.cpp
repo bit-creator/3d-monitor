@@ -53,39 +53,39 @@ UVCoordinate& UVCoordinate::operator=(const UVCoordinate&& UV)
 
 UVCoordinate::~UVCoordinate(){ }
 
-void UVCoordinate::setU(double& U)
+void UVCoordinate::setU(float& U)
 {
     _U = U;
 }
 
-void UVCoordinate::setV(double& V)
+void UVCoordinate::setV(float& V)
 {
     _V = V;
 }
 
-void UVCoordinate::setW(double& W)
+void UVCoordinate::setW(float& W)
 {
     _W = W;
 }
 
-void UVCoordinate::setKoordinate(double& U, double& V, double& W)
+void UVCoordinate::setKoordinate(float& U, float& V, float& W)
 {
     _U = U;
     _V = V;
     _W = W;
 }
 
-double UVCoordinate::getU() const
+float UVCoordinate::getU() const
 {
     return _U;
 }
 
-double UVCoordinate::getV() const
+float UVCoordinate::getV() const
 {
     return _V;
 }
 
-double UVCoordinate::getW() const
+float UVCoordinate::getW() const
 {
     return _W;
 }

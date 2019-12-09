@@ -41,7 +41,7 @@ Document3D& Document3D::operator=(const Document3D& document)
     if(this == &document)
         return *this;
 
-    //document.GetName();
+    //_filename = (document.GetName());
     _num = document._num;
     _data_vertex = document._data_vertex;
     _data_triangle = document._data_triangle;
@@ -68,47 +68,40 @@ Document3D& Document3D::operator=(const Document3D&& document)
     return *this;
 }
 
-Document::~Document(){ }
+Document3D::~Document3D(){ }
 
-
-bool Document::SaveAs(QString filename)
+Document3D::DocumentType Document3D::GetDocumentType() const
 {
-    bool result = false;
-
-    _filename = filename;
-    if(Save())
-    {
-        //result = DocumentManager::GetInstance().RenameDocument(this, filename);
-    }
-
-    return result;
+    return DocumentType::MESH_DOCUMENT;
 }
 
-void Document3D::setGabsritX(double& x)
+
+
+void Document3D::setGabsritX(float& x)
 {
     _gabaritX = x;
 }
 
-void Document3D::setGabsritY(double& y)
+void Document3D::setGabsritY(float& y)
 {
     _gabaritY = y;
 }
 
-void Document3D::setGabsritZ(double& z)
+void Document3D::setGabsritZ(float& z)
 {
     _gabaritZ = z;
 }
 
 void Document3D::calculateGabrit()
 {
-    auto minMaxX = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareX);
-    _gabaritX = minMaxX.second->getX() - minMaxX.first->getX();
+    //auto minMaxX = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareX);
+    //_gabaritX = *(minMaxX.first)
 
-    auto minMaxY = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareY);
-    _gabaritY = minMaxY.second->getY() - minMaxY.first->getY();
+    //auto minMaxY = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareY);
+    //_gabaritY = minMaxY.second->getY() - minMaxY.first->getY();
 
-    auto minMaxZ = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareZ);
-    _gabaritZ = minMaxZ.second->getZ() - minMaxZ.first->getZ();
+    //auto minMaxZ = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareZ);
+    //_gabaritZ = *(minMaxZ.second)->getZ() - minMaxZ.first->getZ();
 }
 
 void Document3D::calculateNum()
@@ -116,17 +109,17 @@ void Document3D::calculateNum()
     _num = static_cast<uint32_t>(_data_triangle.size());
 }
 
-double Document3D::getGabaritX() const
+float Document3D::getGabaritX() const
 {
     return _gabaritX;
 }
 
-double Document3D::getGabaritY() const
+float Document3D::getGabaritY() const
 {
     return _gabaritY;
 }
 
-double Document3D::getGabaritZ() const
+float Document3D::getGabaritZ() const
 {
     return _gabaritZ;
 }

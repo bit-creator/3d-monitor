@@ -6,13 +6,12 @@
 #include"graphicvertex.h"
 #include"triangle.h"
 
-class NonInit
+namespace NonInit
 {
-public:
-    static const Vector vector;
-    static const GeometricVertex geometricVertex;
-    static const GraphicVertex graphicVertex;
-    static const Triangle triangle;
-};
+    const Vector vector;
+    const GeometricVertex geometricVertex;
+    const GraphicVertex graphicVertex;
+    const Triangle triangle;
+}
 
 #endif // NONINITVARIABLE_H

@@ -15,15 +15,15 @@ public:
 
     ~UVCoordinate();
 
-    void setU(double& U);
-    void setV(double& V);
-    void setW(double& W);
+    void setU(float& U);
+    void setV(float& V);
+    void setW(float& W);
 
-    void setKoordinate(double& U, double& V, double& W);
+    void setKoordinate(float& U, float& V, float& W);
 
-    double getU() const;
-    double getV() const;
-    double getW() const;
+    float getU() const;
+    float getV() const;
+    float getW() const;
 
     friend std::ifstream& operator>>(std::ifstream& in, UVCoordinate& UV);
     friend std::ofstream& operator<<(std::ofstream& out, const UVCoordinate& UV);
@@ -32,9 +32,9 @@ public:
     friend bool operator!=(const UVCoordinate& UV_1, const UVCoordinate& UV_2);
 
 private:
-    double _U;
-    double _V;
-    double _W;
+    float _U;
+    float _V;
+    float _W;
 };
 
 #endif // UVCOORDINATE_H

@@ -53,39 +53,39 @@ Primitive3D& Primitive3D::operator=(const Primitive3D&& primitive3D)
 
 Primitive3D::~Primitive3D(){ }
 
-void Primitive3D::setX(double& x)
+void Primitive3D::setX(float& x)
 {
     _x = x;
 }
 
-void Primitive3D::setY(double& y)
+void Primitive3D::setY(float& y)
 {
     _y = y;
 }
 
-void Primitive3D::setZ(double& z)
+void Primitive3D::setZ(float& z)
 {
     _z = z;
 }
 
-void Primitive3D::setKoordinate(double& x, double& y, double& z)
+void Primitive3D::setKoordinate(float& x, float& y, float& z)
 {
     _x = x;
     _y = y;
     _z = z;
 }
 
-double Primitive3D::getX() const
+float Primitive3D::getX() const
 {
     return _x;
 }
 
-double Primitive3D::getY() const
+float Primitive3D::getY() const
 {
     return _y;
 }
 
-double Primitive3D::getZ() const
+float Primitive3D::getZ() const
 {
     return _z;
 }

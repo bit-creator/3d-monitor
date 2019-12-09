@@ -24,8 +24,6 @@ private:
     bool RenameDocument(std::shared_ptr<Document>, QString new_filename);
 
     std::shared_ptr<Document> CreateDocumentByType(QString filename, Document::DocumentType type);
-    std::shared_ptr<Document> CreateMeshDocumentByType(QString filename, Document3D::MeshType type);
-
 
 private:
     std::map<QString, std::shared_ptr<Document>> _open_documents;

@@ -22,6 +22,7 @@ public:
     void setVertex_2(std::shared_ptr<GraphicVertex> vertex_2);
     void setVertex_3(std::shared_ptr<GraphicVertex> vertex_3);
 
+    void calculateTriangleNormal();
 
     const Vector& getTriangleVector() const;
     GraphicVertex& getVertex_1() const;

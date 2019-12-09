@@ -1,4 +1,5 @@
 #include "vector.h"
+#include <cmath>
 
 Vector::Vector()
     : Primitive3D()
@@ -47,4 +48,18 @@ Vector::~Vector(){ }
 Vector::primitiveType Vector::getPrimitiveType() const
 {
     return primitiveType::GEOMETRIC_VECTOR;
+}
+
+void Vector::normalizeNormal(Vector& normal)
+{
+    float lenght = getLength(normal);
+
+    normal._x /= lenght;
+    normal._y /= lenght;
+    normal._z /= lenght;
+}
+
+float Vector::getLength(Vector& vector)
+{
+    return sqrt(pow(vector.getX(), 2) + pow(vector.getY(), 2) + pow(vector.getZ(), 2));
 }

@@ -74,19 +74,7 @@ std::shared_ptr<Document> DocumentManager::CreateDocumentByType(QString filename
 
     if(type == Document::DocumentType::MESH_DOCUMENT)
     {
-        result = CreateMeshDocumentByType(filename, Document3D::MeshType::STL);  // нуждаеться в доработке
-    }
-
-    return result;
-}
-
-std::shared_ptr<Document> DocumentManager::CreateMeshDocumentByType(QString filename, Document3D::MeshType type)
-{
-    std::shared_ptr<Document> result = nullptr;
-
-    if(type == Document3D::MeshType::STL)
-    {
-        result = std::make_shared<ModelSTL>(filename);
+        result = std::make_shared<ModelSTL>(filename);  // нуждаеться в доработке
     }
 
     return result;

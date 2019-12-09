@@ -24,32 +24,32 @@ public:
 
     virtual ~Document3D() override;
 
-    virtual DocumentType GetDocumentType() const override;
+    DocumentType GetDocumentType() const override;
     virtual MeshType GetMeshType() const = 0;
 
     virtual bool Open() override = 0;
     virtual bool Save() override = 0;
 
-    void setGabsritX(double& x);
-    void setGabsritY(double& y);
-    void setGabsritZ(double& z);
+    void setGabsritX(float& x);
+    void setGabsritY(float& y);
+    void setGabsritZ(float& z);
 
     void calculateGabrit();
     void calculateNum();
 
-    double getGabaritX() const;
-    double getGabaritY() const;
-    double getGabaritZ() const;
+    float getGabaritX() const;
+    float getGabaritY() const;
+    float getGabaritZ() const;
 
 private:
-    double _gabaritX;
-    double _gabaritY;
-    double _gabaritZ;
+    float _gabaritX;
+    float _gabaritY;
+    float _gabaritZ;
 
 protected:
     uint32_t _num;
-    std::list<GraphicVertex> _data_vertex;
-    std::list<Triangle> _data_triangle;
+    std::list<std::shared_ptr<GraphicVertex>> _data_vertex;
+    std::list<std::shared_ptr<Triangle>> _data_triangle;
 };
 
 #endif // DOCUMENT3D_H

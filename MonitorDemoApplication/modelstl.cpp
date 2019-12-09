@@ -63,9 +63,10 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
     model._model_title = header;
     model._num = static_cast<uint32_t>(*num);
 
+    ModelSTL::STL_poligon poligon;
+
     for(size_t i = 0; i < model._num; ++i)
     {
-        ModelSTL::STL_poligon poligon;
         in.read((char*)&poligon, 50);
 
         Triangle triangle;
@@ -74,30 +75,17 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
         GraphicVertex vertex_2;
         GraphicVertex vertex_3;
 
-        double normalX = static_cast<double>(poligon.normalX);
-        double normalY = static_cast<double>(poligon.normalY);
-        double normalZ = static_cast<double>(poligon.normalZ);
-        double point_1X = static_cast<double>(poligon.point_1X);
-        double point_1Y = static_cast<double>(poligon.point_1Y);
-        double point_1Z = static_cast<double>(poligon.point_1Z);
-        double point_2X = static_cast<double>(poligon.point_2X);
-        double point_2Y = static_cast<double>(poligon.point_2Y);
-        double point_2Z = static_cast<double>(poligon.point_2Z);
-        double point_3X = static_cast<double>(poligon.point_3X);
-        double point_3Y = static_cast<double>(poligon.point_3Y);
-        double point_3Z = static_cast<double>(poligon.point_3Z);
-
-        triangleNormal.setX(normalX);
-        triangleNormal.setX(normalY);
-        triangleNormal.setX(normalZ);
+        triangleNormal.setX(poligon.normalX);
+        triangleNormal.setX(poligon.normalY);
+        triangleNormal.setX(poligon.normalZ);
 
         vertex_1.setNormal(triangleNormal);
         vertex_2.setNormal(triangleNormal);
         vertex_3.setNormal(triangleNormal);
 
-        vertex_1.setKoordinate(point_1X, point_1Y, point_1Z);
-        vertex_2.setKoordinate(point_2X, point_2Y, point_2Z);
-        vertex_3.setKoordinate(point_3X, point_3Y, point_3Z);
+        vertex_1.setKoordinate(poligon.point_1X, poligon.point_1Y, poligon.point_1Z);
+        vertex_2.setKoordinate(poligon.point_2X, poligon.point_2Y, poligon.point_2Z);
+        vertex_3.setKoordinate(poligon.point_3X, poligon.point_3Y, poligon.point_3Z);
 
         triangle.setTriangleVector(triangleNormal);
 
@@ -105,69 +93,77 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
         {
             for(auto it = model._data_vertex.begin(); it != model._data_vertex.end(); ++it)
             {
-                if(*it == vertex_1)
+                if(**it == vertex_1)
                 {
-                    triangle.setVertex_1(std::make_shared<GraphicVertex>(*it));
+                    triangle.setVertex_1(*it);
                 }
-                else if (*it == vertex_2)
+                else if (**it == vertex_2)
                 {
-                    triangle.setVertex_2(std::make_shared<GraphicVertex>(*it));
+                    triangle.setVertex_2(*it);
                 }
-                else if (*it == vertex_3)
+                else if (**it == vertex_3)
                 {
-                    triangle.setVertex_3(std::make_shared<GraphicVertex>(*it));
+                    triangle.setVertex_3(*it);
                 }
             }
             if (triangle.getVertex_1() == NonInit::graphicVertex)
             {
-                model._data_vertex.push_back(vertex_1);
-                triangle.setVertex_1(std::make_shared<GraphicVertex>(--model._data_vertex.end()));
+                model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
+                triangle.setVertex_1(*--model._data_vertex.end());
             }
             if (triangle.getVertex_2() == NonInit::graphicVertex)
             {
-                model._data_vertex.push_back(vertex_2);
-                triangle.setVertex_2(std::make_shared<GraphicVertex>(--model._data_vertex.end()));
+                model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
+                triangle.setVertex_2(*--model._data_vertex.end());
             }
             if (triangle.getVertex_3() == NonInit::graphicVertex)
             {
-                model._data_vertex.push_back(vertex_3);
-                triangle.setVertex_3(std::make_shared<GraphicVertex>(--model._data_vertex.end()));
+                model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
+                triangle.setVertex_3(*--model._data_vertex.end());
             }
         }
         else
         {
-            model._data_vertex.push_back(vertex_1);
-            model._data_vertex.push_back(vertex_2);
-            model._data_vertex.push_back(vertex_3);
+            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
+            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
+            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
 
-            triangle.setVertex_1(std::make_shared<GraphicVertex>(vertex_1));
-            triangle.setVertex_2(std::make_shared<GraphicVertex>(vertex_2));
-            triangle.setVertex_3(std::make_shared<GraphicVertex>(vertex_3));
+            triangle.setVertex_1(*model._data_vertex.begin());
+            triangle.setVertex_2(*++model._data_vertex.begin());
+            triangle.setVertex_3(*--model._data_vertex.end());
         }
-        model._data_triangle.push_back(triangle);
+        model._data_triangle.push_back(std::make_shared<Triangle>(triangle));
     }
     return in;
 }
 
 std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model)
 {
-    //char header[80] = model._model_title.toStdString().c_str();
-    //char num[4] = static_cast<char>(model._num);
+    const char* header = model._model_title.toStdString().c_str();
+    const char* num = std::to_string(model._num).c_str();
 
-//    out << model._model_title.toStdString().c_str()
-//        << static_cast<char>(model._num);
+    out << header
+        << num;
 
-//    ModelSTL::STL_poligon poligon;
+    ModelSTL::STL_poligon poligon;
 
+    for(auto it = model._data_triangle.begin(); it != model._data_triangle.end(); ++it)
+    {
+        poligon.normalX = (*it)->getTriangleVector().getX();
+        poligon.normalY = (*it)->getTriangleVector().getY();
+        poligon.normalZ = (*it)->getTriangleVector().getZ();
+        poligon.point_1X = (*it)->getVertex_1().getX();
+        poligon.point_1Y = (*it)->getVertex_1().getY();
+        poligon.point_1Z = (*it)->getVertex_1().getZ();
+        poligon.point_2X = (*it)->getVertex_2().getX();
+        poligon.point_2Y = (*it)->getVertex_2().getY();
+        poligon.point_2Z = (*it)->getVertex_2().getZ();
+        poligon.point_3X = (*it)->getVertex_3().getX();
+        poligon.point_3Y = (*it)->getVertex_3().getY();
+        poligon.point_3Z = (*it)->getVertex_3().getZ();
 
-//    for(auto it = model._data_triangle.begin(); it != model._data_triangle.end(); ++it)
-//    {
-//        out << it->getTriangleVector()
-//            << it->getVertex_1()
-//            << it->getVertex_2()
-//            << it->getVertex_3()
-//            << '0' << ' ' << '0';
-//    }
+        out.write((char*)&poligon, 50);
+    }
     return out;
 }
 

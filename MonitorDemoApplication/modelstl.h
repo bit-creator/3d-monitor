@@ -20,8 +20,8 @@ public:
         float point_3X;
         float point_3Y;
         float point_3Z;
-        char bytecount1;
-        char bytecount2;
+        char bytecount1 = 0;
+        char bytecount2 = 0;
     };
 
     ModelSTL(QString filename);
