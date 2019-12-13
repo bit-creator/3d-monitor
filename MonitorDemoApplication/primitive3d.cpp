@@ -1,7 +1,7 @@
 #include "primitive3d.h"
 #include <cmath>
 
-constexpr auto tolerance = 0.00001;
+constexpr double tolerance = 0.00001;
 
 Primitive3D::Primitive3D()
     : _x(0.),
@@ -108,34 +108,41 @@ std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D)
     return out;
 }
 
-bool Primitive3D::compareX(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
+bool Primitive3D::compareX(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2)
 {
-    if(primitive3D_1._x > primitive3D_2._x)
+    if(primitive3D_1->_x > primitive3D_2->_x)
         return true;
     return false;
 }
 
 
-bool Primitive3D::compareY(const Primitive3D &primitive3D_1, const Primitive3D &primitive3D_2)
+bool Primitive3D::compareY(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2)
 {
-    if(primitive3D_1._y > primitive3D_2._y)
+    if(primitive3D_1->_y > primitive3D_2->_y)
         return true;
     return false;
 }
 
 
-bool Primitive3D::compareZ(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
+bool Primitive3D::compareZ(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2)
 {
-    if(primitive3D_1._z > primitive3D_2._z)
+    if(primitive3D_1->_z > primitive3D_2->_z)
+        return true;
+    return false;
+}
+
+bool is_floatEqual(const float& expr_1, const float& expr_2)
+{
+    if(abs(expr_1 - expr_2) < tolerance)
         return true;
     return false;
 }
 
 bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2)
 {
-    if(abs(primitive3D_1._x - primitive3D_2._x) < tolerance
-            && abs(primitive3D_1._y - primitive3D_2._y) < tolerance
-            && abs(primitive3D_1._z - primitive3D_2._z) < tolerance)
+    if(is_floatEqual(primitive3D_1._x, primitive3D_2._x)
+            && is_floatEqual(primitive3D_1._y, primitive3D_2._y)
+            && is_floatEqual(primitive3D_1._z, primitive3D_2._z))
         return true;
     return false;
 }
@@ -144,4 +151,5 @@ bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D
 {
     return !(primitive3D_1 == primitive3D_2);
 }
+
 

@@ -77,7 +77,7 @@ void GraphicVertex::setWeight(float& weight)
     _weight = weight;
 }
 
-void GraphicVertex::setNormal(Vector& normal)
+void GraphicVertex::setNormal(const Vector& normal)
 {
     _normal = normal;
 }

@@ -94,14 +94,14 @@ void Document3D::setGabsritZ(float& z)
 
 void Document3D::calculateGabrit()
 {
-    //auto minMaxX = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareX);
-    //_gabaritX = *(minMaxX.first)
+    auto minMaxX = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareX);
+    _gabaritX = (*(minMaxX.first))->getX() - (*(minMaxX.second))->getX();
 
-    //auto minMaxY = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareY);
-    //_gabaritY = minMaxY.second->getY() - minMaxY.first->getY();
+    auto minMaxY = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareY);
+    _gabaritY = (*(minMaxY.first))->getY() - (*(minMaxY.second))->getY();
 
-    //auto minMaxZ = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareZ);
-    //_gabaritZ = *(minMaxZ.second)->getZ() - minMaxZ.first->getZ();
+    auto minMaxZ = std::minmax_element(_data_vertex.begin(), _data_vertex.end(), Primitive3D::compareZ);
+    _gabaritZ = (*(minMaxZ.first))->getZ() - (*(minMaxZ.second))->getZ();
 }
 
 void Document3D::calculateNum()

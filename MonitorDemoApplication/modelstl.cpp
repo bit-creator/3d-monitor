@@ -3,6 +3,8 @@
 #include <fstream>
 #include"noninitvariable.h"
 
+constexpr float KRITIC_COS = 0.9659258;
+
 ModelSTL::ModelSTL(QString filename)
     : Document3D(filename)
 {
@@ -106,17 +108,17 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
                     triangle.setVertex_3(*it);
                 }
             }
-            if (triangle.getVertex_1() == NonInit::graphicVertex)
+            if (*triangle.getVertex_1() == NonInit::graphicVertex)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
                 triangle.setVertex_1(*--model._data_vertex.end());
             }
-            if (triangle.getVertex_2() == NonInit::graphicVertex)
+            if (*triangle.getVertex_2() == NonInit::graphicVertex)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
                 triangle.setVertex_2(*--model._data_vertex.end());
             }
-            if (triangle.getVertex_3() == NonInit::graphicVertex)
+            if (*triangle.getVertex_3() == NonInit::graphicVertex)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
                 triangle.setVertex_3(*--model._data_vertex.end());
@@ -152,15 +154,15 @@ std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model)
         poligon.normalX = (*it)->getTriangleVector().getX();
         poligon.normalY = (*it)->getTriangleVector().getY();
         poligon.normalZ = (*it)->getTriangleVector().getZ();
-        poligon.point_1X = (*it)->getVertex_1().getX();
-        poligon.point_1Y = (*it)->getVertex_1().getY();
-        poligon.point_1Z = (*it)->getVertex_1().getZ();
-        poligon.point_2X = (*it)->getVertex_2().getX();
-        poligon.point_2Y = (*it)->getVertex_2().getY();
-        poligon.point_2Z = (*it)->getVertex_2().getZ();
-        poligon.point_3X = (*it)->getVertex_3().getX();
-        poligon.point_3Y = (*it)->getVertex_3().getY();
-        poligon.point_3Z = (*it)->getVertex_3().getZ();
+        poligon.point_1X = (*it)->getVertex_1()->getX();
+        poligon.point_1Y = (*it)->getVertex_1()->getY();
+        poligon.point_1Z = (*it)->getVertex_1()->getZ();
+        poligon.point_2X = (*it)->getVertex_2()->getX();
+        poligon.point_2Y = (*it)->getVertex_2()->getY();
+        poligon.point_2Z = (*it)->getVertex_2()->getZ();
+        poligon.point_3X = (*it)->getVertex_3()->getX();
+        poligon.point_3Y = (*it)->getVertex_3()->getY();
+        poligon.point_3Z = (*it)->getVertex_3()->getZ();
 
         out.write((char*)&poligon, 50);
     }
@@ -205,4 +207,54 @@ bool ModelSTL::Save()
     }
 
     return result;
+}
+
+
+void ModelSTL::normalColision()
+{
+    numOfTriangleNormalColision = 0;
+
+    for(auto iter = (*this)._data_triangle.begin(); iter != (*this)._data_triangle.end(); ++iter)
+    {
+        if((*iter)->getTriangleVector() != (*iter)->calculateTriangleNormal())
+        {
+            ++ numOfTriangleNormalColision;
+        }
+    }
+}
+
+void ModelSTL::fixNormal()
+{
+    if(numOfTriangleNormalColision > 0)
+    {
+        for(auto iter = (*this)._data_triangle.begin(); iter != (*this)._data_triangle.end(); ++iter)
+        {
+            (*iter)->setTriangleVector((*iter)->calculateTriangleNormal());
+        }
+    }
+    else
+    {
+        return;
+    }
+}
+
+void ModelSTL::makeVertexNormal()
+{
+    for(auto vertex_iter = (*this)._data_vertex.begin(); vertex_iter != (*this)._data_vertex.end(); ++vertex_iter)
+    {
+        for(auto triangle_iter = (*this)._data_triangle.begin(); triangle_iter != (*this)._data_triangle.end(); ++triangle_iter)
+        {
+            if((*triangle_iter)->getVertex_1() == *vertex_iter)
+            {
+                if((*vertex_iter)->getNormal().VectorAngle((*triangle_iter)->getVertex_1()->getNormal()) <= KRITIC_COS)
+                {
+                    (*vertex_iter)->setNormal((*vertex_iter)->getNormal() + (*triangle_iter)->getTriangleVector());
+                }
+                else
+                {
+                    (*vertex_iter)->setNormal((*triangle_iter)->getTriangleVector());
+                }
+            }
+        }
+    }
 }

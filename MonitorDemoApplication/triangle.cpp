@@ -57,11 +57,6 @@ Triangle& Triangle::operator=(const Triangle&& triangle)
 
 Triangle::~Triangle(){ }
 
-void Triangle::calculateTriangleVector()
-{
-    //_normal = vector;
-}
-
 void Triangle::setTriangleVector(Vector& vector)
 {
     _TriangleNormal = vector;
@@ -82,7 +77,7 @@ void Triangle::setVertex_3(std::shared_ptr<GraphicVertex> vertex_3)
     _vertex_3 = vertex_3;
 }
 
-void Triangle::calculateTriangleNormal()
+Vector& Triangle::calculateTriangleNormal()
 {
     float normalizing_coefficient;
     Vector V1, V2;
@@ -117,19 +112,19 @@ const Vector& Triangle::getTriangleVector() const
     return _TriangleNormal;
 }
 
-GraphicVertex& Triangle::getVertex_1() const
+std::shared_ptr<GraphicVertex> Triangle::getVertex_1() const
 {
-    return *_vertex_1;
+    return _vertex_1;
 }
 
-GraphicVertex& Triangle::getVertex_2() const
+std::shared_ptr<GraphicVertex> Triangle::getVertex_2() const
 {
-    return *_vertex_2;
+    return _vertex_2;
 }
 
-GraphicVertex& Triangle::getVertex_3() const
+std::shared_ptr<GraphicVertex> Triangle::getVertex_3() const
 {
-    return *_vertex_3;
+    return _vertex_3;
 }
 
 bool operator==(const Triangle& triangle, const Triangle& triangle_)

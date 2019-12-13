@@ -38,8 +38,15 @@ public:
     virtual bool Open() override;
     virtual bool Save() override;
 
+    void normalColision();
+    void fixNormal();
+
+    void makeVertexNormal();
+
     friend std::ifstream& operator>>(std::ifstream& in, ModelSTL model);
     friend std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model);
+
+    int numOfTriangleNormalColision = 1;
 
 private:
     QString _model_title;

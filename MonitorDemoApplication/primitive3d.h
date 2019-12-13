@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <fstream>
+#include <memory>
 
 class Primitive3D
 {
@@ -37,9 +38,9 @@ public:
     friend bool operator==(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
     friend bool operator!=(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
 
-    static bool compareX(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
-    static bool compareY(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
-    static bool compareZ(const Primitive3D& primitive3D_1, const Primitive3D& primitive3D_2);
+    static bool compareX(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2);
+    static bool compareY(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2);
+    static bool compareZ(const std::shared_ptr<Primitive3D> primitive3D_1, const std::shared_ptr<Primitive3D> primitive3D_2);
 
     friend std::ifstream& operator>>(std::ifstream& in, Primitive3D& primitive3D);
     friend std::ofstream& operator<<(std::ofstream& out, const Primitive3D& primitive3D);
@@ -49,5 +50,7 @@ protected:
     float _y;
     float _z;
 };
+
+bool is_floatEqual(const float& epr_1, const float& expr_2);
 
 #endif // PRIMITIVE3D_H

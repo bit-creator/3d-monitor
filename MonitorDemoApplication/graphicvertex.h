@@ -19,7 +19,7 @@ public:
 
     vertexType getVertexType() const override;
 
-    void setNormal(Vector& normal);
+    void setNormal(const Vector& normal);
     void setTextureCoordinate(UVCoordinate& textureCoordinate);
     void setGeometricVertex(GeometricVertex& vertex);
 

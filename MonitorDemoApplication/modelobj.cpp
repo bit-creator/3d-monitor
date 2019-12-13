@@ -337,19 +337,19 @@ std::ofstream& operator<<(std::ofstream& out, const ModelOBJ& model)
         auto vert_iter = model._data_vertex.begin();
         size_t ind = 1;
 
-        while((*iter)->getVertex_1() != **vert_iter) {++ind; ++vert_iter;}
+        while((*iter)->getVertex_1() != *vert_iter) {++ind; ++vert_iter;}
         out << ind << '/' << ind << '/' << ind << ' ';
 
         vert_iter = model._data_vertex.begin();
         ind = 1;
 
-        while((*iter)->getVertex_2() != **vert_iter) {++ind; ++vert_iter;}
+        while((*iter)->getVertex_2() != *vert_iter) {++ind; ++vert_iter;}
         out << ind << '/' << ind << '/' << ind << ' ';
 
         vert_iter = model._data_vertex.begin();
         ind = 1;
 
-        while((*iter)->getVertex_3() != **vert_iter) {++ind; ++vert_iter;}
+        while((*iter)->getVertex_3() != *vert_iter) {++ind; ++vert_iter;}
         out << ind << '/' << ind << '/' << ind << '\n';
     }
 
