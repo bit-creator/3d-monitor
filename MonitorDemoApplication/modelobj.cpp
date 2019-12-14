@@ -62,7 +62,7 @@ bool ModelOBJ::Open()
     {
         QString error = model.errorString();
         std::string filename = GetName().toStdString();
-        std::ifstream in(filename, std::ios::binary);
+        std::ifstream in(filename, std::ios::in);
         in >> *this;
         in.close();
         result = true;
@@ -79,7 +79,7 @@ bool ModelOBJ::Save()
     if(model.open(QIODevice::WriteOnly))
     {
         std::string filename = GetName().toStdString();
-        std::ofstream out(filename, std::ios::binary);
+        std::ofstream out(filename, std::ios::out);
         out << *this;
 
         result = true;
@@ -198,21 +198,30 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
             normal_ind = static_cast<unsigned int>(*ind.c_str());
 
             auto vertex_iter = vertex_data.begin();
-            std::advance(vertex_iter, vertex_ind);
+            std::advance(vertex_iter, vertex_ind - 1);
 
-            vertex_1.setGeometricVertex(**vertex_iter);
+            if(*vertex_iter != nullptr)
+            {
+                vertex_1.setGeometricVertex(**vertex_iter);
+            }
 
             auto normal_iter = normal_data.begin();
-            std::advance(normal_iter, normal_ind);
+            std::advance(normal_iter, normal_ind - 1);
 
-            vertex_1.setNormal(**normal_iter);
+            if(*normal_iter != nullptr)
+            {
+                vertex_1.setNormal(**normal_iter);
+            }
 
             if(have_texture)
             {
                 auto texture_iter = texture_data.begin();
-                std::advance(texture_iter, texture_ind);
+                std::advance(texture_iter, texture_ind - 1);
 
-                vertex_1.setTextureCoordinate(**texture_iter);
+                if(*texture_iter != nullptr)
+                {
+                    vertex_1.setTextureCoordinate(**texture_iter);
+                }
             }
                 ////
 
@@ -236,21 +245,30 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
                 normal_ind = static_cast<unsigned int>(*ind.c_str());
 
                 vertex_iter = vertex_data.begin();
-                std::advance(vertex_iter, vertex_ind);
+                std::advance(vertex_iter, vertex_ind - 1);
 
-                vertex_2.setGeometricVertex(**vertex_iter);
+                if(*vertex_iter != nullptr)
+                {
+                    vertex_2.setGeometricVertex(**vertex_iter);
+                }
 
                 normal_iter = normal_data.begin();
-                std::advance(normal_iter, normal_ind);
+                std::advance(normal_iter, normal_ind - 1);
 
-                vertex_2.setNormal(**normal_iter);
+                if(*normal_iter != nullptr)
+                {
+                    vertex_2.setNormal(**normal_iter);
+                }
 
                 if(have_texture)
                 {
                     auto texture_iter = texture_data.begin();
                     std::advance(texture_iter, texture_ind);
 
-                    vertex_2.setTextureCoordinate(**texture_iter);
+                    if(*texture_iter != nullptr)
+                    {
+                        vertex_2.setTextureCoordinate(**texture_iter);
+                    }
                 }
 
                 ////
@@ -275,21 +293,30 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
                 normal_ind = static_cast<unsigned int>(*ind.c_str());
 
                 vertex_iter = vertex_data.begin();
-                std::advance(vertex_iter, vertex_ind);
+                std::advance(vertex_iter, vertex_ind - 1);
 
-                vertex_3.setGeometricVertex(**vertex_iter);
+                if(*vertex_iter != nullptr)
+                {
+                    vertex_3.setGeometricVertex(**vertex_iter);
+                }
 
                 normal_iter = normal_data.begin();
-                std::advance(normal_iter, normal_ind);
+                std::advance(normal_iter, normal_ind - 1);
 
-                vertex_3.setNormal(**normal_iter);
+                if(*normal_iter != nullptr)
+                {
+                    vertex_3.setNormal(**normal_iter);
+                }
 
                 if(have_texture)
                 {
                     auto texture_iter = texture_data.begin();
-                    std::advance(texture_iter, texture_ind);
+                    std::advance(texture_iter, texture_ind - 1);
 
-                    vertex_3.setTextureCoordinate(**texture_iter);
+                    if(*texture_iter != nullptr)
+                    {
+                        vertex_3.setTextureCoordinate(**texture_iter);
+                    }
                 }
 
                 Triangle triangle;

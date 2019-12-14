@@ -108,17 +108,17 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
                     triangle.setVertex_3(*it);
                 }
             }
-            if (*triangle.getVertex_1() == NonInit::graphicVertex)
+            if (triangle.getVertex_1() == nullptr)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
                 triangle.setVertex_1(*--model._data_vertex.end());
             }
-            if (*triangle.getVertex_2() == NonInit::graphicVertex)
+            if (triangle.getVertex_2() == nullptr)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
                 triangle.setVertex_2(*--model._data_vertex.end());
             }
-            if (*triangle.getVertex_3() == NonInit::graphicVertex)
+            if (triangle.getVertex_3() == nullptr)
             {
                 model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
                 triangle.setVertex_3(*--model._data_vertex.end());
@@ -151,6 +151,9 @@ std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model)
 
     for(auto it = model._data_triangle.begin(); it != model._data_triangle.end(); ++it)
     {
+        if(*it == nullptr)
+            return out;
+
         poligon.normalX = (*it)->getTriangleVector().getX();
         poligon.normalY = (*it)->getTriangleVector().getY();
         poligon.normalZ = (*it)->getTriangleVector().getZ();
