@@ -64,7 +64,7 @@ bool ModelOBJ::Open()
         std::string filename = GetName().toStdString();
         std::ifstream in(filename, std::ios::in);
         in >> *this;
-        in.close();
+        model.close();
         result = true;
     }
 
@@ -81,7 +81,7 @@ bool ModelOBJ::Save()
         std::string filename = GetName().toStdString();
         std::ofstream out(filename, std::ios::out);
         out << *this;
-
+        model.close();
         result = true;
     }
 

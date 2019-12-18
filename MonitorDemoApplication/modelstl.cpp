@@ -188,7 +188,7 @@ bool ModelSTL::Open()
         std::string filename = GetName().toStdString();
         std::ifstream in(filename, std::ios::binary);
         in >> *this;
-        in.close();
+        model.close();
         result = true;
     }
 
