@@ -21,12 +21,16 @@ std::shared_ptr<Document> DocumentManager::OpenDocument(QString filename, Docume
 
     _open_documents.insert(std::pair<QString,std::shared_ptr<Document>>(filename, document));
 
+    _active_document = document;
+
     return document;
 }
 
 bool DocumentManager::SaveDocumentAs(std::shared_ptr<Document> document, QString filename)
 {
-    return document->SaveAs(filename);
+    if(document != nullptr)
+        return document->SaveAs(filename);
+    return false;
 }
 
 bool DocumentManager::SaveDocument(std::shared_ptr<Document> document)

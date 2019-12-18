@@ -51,7 +51,6 @@ bool Document::SaveAs(QString filename)
     {
         //result = DocumentManager::GetInstance().RenameDocument(this, filename);
     }
-
     return result;
 }
 

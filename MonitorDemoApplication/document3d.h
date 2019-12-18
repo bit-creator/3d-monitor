@@ -47,7 +47,7 @@ private:
     float _gabaritZ;
 
 protected:
-    uint32_t _num;
+    int32_t _num;
     std::list<std::shared_ptr<GraphicVertex>> _data_vertex;
     std::list<std::shared_ptr<Triangle>> _data_triangle;
 };

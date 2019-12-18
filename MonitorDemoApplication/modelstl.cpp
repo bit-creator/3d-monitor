@@ -57,13 +57,13 @@ ModelSTL::~ModelSTL(){}
 std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
 {
     char header[80] = "";
-    char num[4] = "";
+    int32_t num;
 
     in.read(header, 80);
-    in.read(num, 4);
+    in.read((char*)&num, 4);
 
     model._model_title = header;
-    model._num = static_cast<uint32_t>(*num);
+    model._num = num;
 
     ModelSTL::STL_poligon poligon;
 
@@ -205,7 +205,7 @@ bool ModelSTL::Save()
         std::string filename = GetName().toStdString();
         std::ofstream out(filename, std::ios::binary);
         out << *this;
-
+        model.close();
         result = true;
     }
 
