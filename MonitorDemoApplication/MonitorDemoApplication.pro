@@ -44,7 +44,6 @@ HEADERS  += mainwindow.h \
     graphicvertex.h \
     modelobj.h \
     modelstl.h \
-    noninitvariable.h \
     primitive3d.h \
     triangle.h \
     uvcoordinate.h \

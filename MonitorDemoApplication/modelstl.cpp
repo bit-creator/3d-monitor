@@ -1,7 +1,6 @@
 #include "modelstl.h"
 #include <QFile>
 #include <fstream>
-#include"noninitvariable.h"
 
 constexpr float KRITIC_COS = 0.9659258;
 
@@ -78,8 +77,8 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
         GraphicVertex vertex_3;
 
         triangleNormal.setX(poligon.normalX);
-        triangleNormal.setX(poligon.normalY);
-        triangleNormal.setX(poligon.normalZ);
+        triangleNormal.setY(poligon.normalY);
+        triangleNormal.setZ(poligon.normalZ);
 
         vertex_1.setNormal(triangleNormal);
         vertex_2.setNormal(triangleNormal);
