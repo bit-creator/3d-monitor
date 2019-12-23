@@ -56,7 +56,7 @@ ModelSTL::~ModelSTL(){}
 std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
 {
     char header[80] = "";
-    int32_t num;
+    uint32_t num;
 
     in.read(header, 80);
     in.read((char*)&num, 4);
@@ -66,7 +66,7 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
 
     ModelSTL::STL_poligon poligon;
 
-    for(size_t i = 0; i < model._num; ++i)
+    for(uint32_t i = 0; i < model._num; ++i)
     {
         in.read((char*)&poligon, 50);
 
@@ -143,8 +143,8 @@ std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model)
     const char* header = model._model_title.toStdString().c_str();
     const char* num = std::to_string(model._num).c_str();
 
-    out << header
-        << num;
+    out.write(header, 80);
+    out.write(num, 4);
 
     ModelSTL::STL_poligon poligon;
 

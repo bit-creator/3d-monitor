@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_action_open_triggered()
 {
-    QString model_name = QFileDialog::getOpenFileName(this, "", "", "OBJ (*.obj)");
+    QString model_name = QFileDialog::getOpenFileName(this, "", "", "STL (*.stl)");
     if(!model_name.isEmpty())
     {
         if(!DocumentManager::GetInstance().OpenDocument(model_name, Document::DocumentType::MESH_DOCUMENT))

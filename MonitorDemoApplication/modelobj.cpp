@@ -99,7 +99,7 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
         std::list<std::shared_ptr<GeometricVertex>> vertex_data;
         std::list<std::shared_ptr<UVCoordinate>> texture_data;
         std::list<std::shared_ptr<Vector>> normal_data;
-        std::list<float> weight_data;
+        //std::list<float> weight_data;
 
         in >> control_symbol;
 
@@ -122,15 +122,15 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
 
             vertex_data.push_back(std::make_shared<GeometricVertex>(vertex));
 
-            char syb;
+//            char syb;
 
-            in >> syb;
+//            in >> syb;
 
-            if(syb != '\n')
-            {
-                in >> w;
-                weight_data.push_back(w);
-            }
+//            if(syb != '\n')
+//            {
+//                in >> w;
+//                weight_data.push_back(w);
+//            }
         }
 
         else if(control_symbol[0] == 'v'
@@ -144,15 +144,15 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
 
             textureCor.setKoordinate(U, V, W);
 
-            char syb;
+//            char syb;
 
-            in >> syb;
+//            in >> syb;
 
-            if(syb != '\n')
-            {
-                in >> W;
-                textureCor.setW(W);
-            }
+//            if(syb != '\n')
+//            {
+//                in >> W;
+//                textureCor.setW(W);
+//            }
 
             texture_data.push_back(std::make_shared<UVCoordinate>(textureCor));
         }
@@ -192,6 +192,10 @@ std::ifstream& operator>>(std::ifstream& in, ModelOBJ model)
                 {
                     have_texture = false;
                 }
+            }
+            if(!have_texture)
+            {
+                in.ignore(1);
             }
 
             getline(in, ind, ' ');
@@ -379,6 +383,5 @@ std::ofstream& operator<<(std::ofstream& out, const ModelOBJ& model)
         while((*iter)->getVertex_3() != *vert_iter) {++ind; ++vert_iter;}
         out << ind << '/' << ind << '/' << ind << '\n';
     }
-
     return out;
 }
