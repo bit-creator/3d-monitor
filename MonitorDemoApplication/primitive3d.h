@@ -25,11 +25,11 @@ public:
 
     virtual primitiveType getPrimitiveType() const = 0;
 
-    void setX(float& x);
-    void setY(float& y);
-    void setZ(float& z);
+    void setX(const float& x);
+    void setY(const float& y);
+    void setZ(const float& z);
 
-    void setKoordinate(float& x, float& y, float& z);
+    void setKoordinate(const float& x, const float& y, const float& z);
 
     float getX() const;
     float getY() const;

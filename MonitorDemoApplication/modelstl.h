@@ -43,7 +43,7 @@ public:
 
     void makeVertexNormal();
 
-    friend std::ifstream& operator>>(std::ifstream& in, ModelSTL model);
+    friend std::ifstream& operator>>(std::ifstream& in, ModelSTL& model);
     friend std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model);
 
     int numOfTriangleNormalColision = 1;

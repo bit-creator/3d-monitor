@@ -15,11 +15,11 @@ public:
 
     ~UVCoordinate();
 
-    void setU(float& U);
-    void setV(float& V);
-    void setW(float& W);
+    void setU(const float& U);
+    void setV(const float& V);
+    void setW(const float& W);
 
-    void setKoordinate(float& U, float& V, float& W);
+    void setKoordinate(const float& U, const float& V, const float& W);
 
     float getU() const;
     float getV() const;

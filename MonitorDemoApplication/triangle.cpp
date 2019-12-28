@@ -1,9 +1,8 @@
 #include"triangle.h"
-#include"noninitvariable.h"
 #include<cmath>
 
 Triangle::Triangle()
-    : _TriangleNormal(NonInit::vector)
+    : _TriangleNormal()
     , _vertex_1(nullptr)
     , _vertex_2(nullptr)
     , _vertex_3(nullptr)

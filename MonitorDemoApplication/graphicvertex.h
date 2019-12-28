@@ -23,9 +23,9 @@ public:
     void setTextureCoordinate(UVCoordinate& textureCoordinate);
     void setGeometricVertex(GeometricVertex& vertex);
 
-    void setWeight(float& weight);
-    void setNormal(float& x, float& y, float& z);
-    void setTextureCoordinate(float& U, float& V, float& W);
+    void setWeight(const float& weight);
+    void setNormal(const float& x, const float& y, const float& z);
+    void setTextureCoordinate(const float& U, const float& V, const float& W);
 
     float getWeight() const;
     Vector getNormal() const;

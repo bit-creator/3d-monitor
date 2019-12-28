@@ -53,22 +53,22 @@ UVCoordinate& UVCoordinate::operator=(const UVCoordinate&& UV)
 
 UVCoordinate::~UVCoordinate(){ }
 
-void UVCoordinate::setU(float& U)
+void UVCoordinate::setU(const float& U)
 {
     _U = U;
 }
 
-void UVCoordinate::setV(float& V)
+void UVCoordinate::setV(const float& V)
 {
     _V = V;
 }
 
-void UVCoordinate::setW(float& W)
+void UVCoordinate::setW(const float& W)
 {
     _W = W;
 }
 
-void UVCoordinate::setKoordinate(float& U, float& V, float& W)
+void UVCoordinate::setKoordinate(const float& U, const float& V, const float& W)
 {
     _U = U;
     _V = V;

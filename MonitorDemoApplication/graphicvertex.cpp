@@ -1,5 +1,4 @@
 #include "graphicvertex.h"
-#include "NonInitVariable.h"
 
 GraphicVertex::GraphicVertex()
     : GeometricVertex()
@@ -72,7 +71,7 @@ void GraphicVertex::setGeometricVertex(GeometricVertex& vertex)
     _z = vertex.getZ();
 }
 
-void GraphicVertex::setWeight(float& weight)
+void GraphicVertex::setWeight(const float& weight)
 {
     _weight = weight;
 }
@@ -82,7 +81,7 @@ void GraphicVertex::setNormal(const Vector& normal)
     _normal = normal;
 }
 
-void GraphicVertex::setNormal(float& x, float& y, float& z)
+void GraphicVertex::setNormal(const float& x, const float& y, const float& z)
 {
     _normal.setX(x);
     _normal.setY(y);
@@ -94,7 +93,7 @@ void GraphicVertex::setTextureCoordinate(UVCoordinate& textureCoordinate)
     _textureCoordinate = textureCoordinate;
 }
 
-void GraphicVertex::setTextureCoordinate(float& U, float& V, float& W)
+void GraphicVertex::setTextureCoordinate(const float &U, const float &V, const float &W)
 {
     _textureCoordinate.setU(U);
     _textureCoordinate.setV(V);

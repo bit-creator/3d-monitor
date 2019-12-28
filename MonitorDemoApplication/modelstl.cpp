@@ -53,10 +53,10 @@ ModelSTL& ModelSTL::operator=(const ModelSTL&& model)
 
 ModelSTL::~ModelSTL(){}
 
-std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
+std::ifstream& operator>>(std::ifstream& in, ModelSTL& model)
 {
-    char header[80] = "";
-    uint32_t num;
+    char header[80] = "";//Here should be the text of our header! 2 Here should be the text of our header!";
+    uint32_t num = 0;
 
     in.read(header, 80);
     in.read((char*)&num, 4);
@@ -64,7 +64,74 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
     model._model_title = header;
     model._num = num;
 
+
+//    Triangle triangle;
+//    Vector triangleNormal;
+//    GraphicVertex vertex_1;
+//    GraphicVertex vertex_2;
+//    GraphicVertex vertex_3;
+
+//    triangleNormal.setX(1.);
+//    triangleNormal.setY(2.);
+//    triangleNormal.setZ(3.);
+
+//    vertex_1.setNormal(triangleNormal);
+//    vertex_2.setNormal(triangleNormal);
+//    vertex_3.setNormal(triangleNormal);
+
+//    vertex_1.setKoordinate(11., 12., 13.);
+//    vertex_2.setKoordinate(21., 22., 23.);
+//    vertex_3.setKoordinate(31., 32., 33.);
+
+//    triangle.setTriangleVector(triangleNormal);
+
+//    if(!model._data_vertex.empty())
+//    {
+//        for(auto it = model._data_vertex.begin(); it != model._data_vertex.end(); ++it)
+//        {
+//            if(**it == vertex_1)
+//            {
+//                triangle.setVertex_1(*it);
+//            }
+//            else if (**it == vertex_2)
+//            {
+//                triangle.setVertex_2(*it);
+//            }
+//            else if (**it == vertex_3)
+//            {
+//                triangle.setVertex_3(*it);
+//            }
+//        }
+//        if (triangle.getVertex_1() == nullptr)
+//        {
+//            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
+//            triangle.setVertex_1(*--model._data_vertex.end());
+//        }
+//        if (triangle.getVertex_2() == nullptr)
+//        {
+//            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
+//            triangle.setVertex_2(*--model._data_vertex.end());
+//        }
+//        if (triangle.getVertex_3() == nullptr)
+//        {
+//            model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
+//            triangle.setVertex_3(*--model._data_vertex.end());
+//        }
+//    }
+//    else
+//    {
+//        model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_1));
+//        model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_2));
+//        model._data_vertex.push_back(std::make_shared<GraphicVertex>(vertex_3));
+
+//        triangle.setVertex_1(*model._data_vertex.begin());
+//        triangle.setVertex_2(*++model._data_vertex.begin());
+//        triangle.setVertex_3(*--model._data_vertex.end());
+//    }
+//    model._data_triangle.push_back(std::make_shared<Triangle>(triangle));
+
     ModelSTL::STL_poligon poligon;
+
 
     for(uint32_t i = 0; i < model._num; ++i)
     {
@@ -135,16 +202,18 @@ std::ifstream& operator>>(std::ifstream& in, ModelSTL model)
         }
         model._data_triangle.push_back(std::make_shared<Triangle>(triangle));
     }
+
     return in;
 }
 
 std::ofstream& operator<<(std::ofstream& out, const ModelSTL& model)
 {
-    const char* header = model._model_title.toStdString().c_str();
-    const char* num = std::to_string(model._num).c_str();
+    std::string str_header = model._model_title.toStdString();
+    const char* header = str_header.c_str();
+    //const char* num = std::to_string(model._num).c_str();
 
     out.write(header, 80);
-    out.write(num, 4);
+    out.write((char*)&model._num, 4);
 
     ModelSTL::STL_poligon poligon;
 
